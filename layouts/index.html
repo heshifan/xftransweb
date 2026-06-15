@@ -1,0 +1,277 @@
+{{ define "main" }}
+<main>
+ <section class="overflow-hidden relative bg-cover bg-center bg-no-repeat min-h-[70vh]"
+          style="background-image: url('/images/shouye.png');">
+   <!-- 深色渐变遮罩 -->
+   <div class="absolute inset-0 bg-gradient-to-r from-primary-900/95 via-primary-900/85 to-primary-900/75"></div>
+   <!-- 装饰光晕 -->
+   <div class="absolute inset-0 opacity-20">
+     <div class="absolute top-0 left-0 w-80 h-80 bg-primary-400 rounded-full blur-3xl"></div>
+     <div class="absolute right-0 bottom-0 w-96 h-96 bg-secondary-400 rounded-full blur-3xl"></div>
+   </div>
+   <div class="relative px-4 py-12 mx-auto max-w-screen-xl lg:py-20">
+     <div class="text-center">
+       <div class="inline-flex px-4 py-1.5 mb-5 text-sm font-semibold tracking-wide text-primary-100 bg-white/10 rounded-full border border-white/15">
+         笔译 · 口译 · 本地化 · 语言支持
+       </div>
+       <h1 class="mb-3 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl xl:text-6xl">
+         {{ .Site.Title }}
+       </h1>
+       <h2 class="pb-2 text-3xl font-light text-primary-100 md:text-4xl">
+         {{ .Site.Params.Moto }}
+       </h2>
+       <p class="mx-auto mb-6 max-w-2xl font-normal leading-8 text-slate-200 xl:mb-2 md:text-lg xl:text-xl">
+         {{ .Site.Params.Description }}
+       </p>
+       <div class="flex flex-col gap-3 justify-center mt-8 sm:flex-row">
+         {{ with .Site.Params.hero.button_primary }}
+         <a href="{{ .url | absLangURL }}" class="inline-flex justify-center items-center px-6 py-3 text-base font-semibold text-white bg-primary-500 rounded-lg shadow-lg transition-colors hover:bg-primary-600">
+           {{ .text }}
+         </a>
+         {{ end }}
+         {{ with .Site.Params.hero.button_secondary }}
+         <a href="{{ .url | absLangURL }}" class="inline-flex justify-center items-center px-6 py-3 text-base font-semibold text-white rounded-lg border border-white/20 bg-white/8 transition-colors hover:bg-white/14">
+           {{ .text }}
+         </a>
+         {{ end }}
+       </div>
+       <div class="grid grid-cols-1 gap-3 mt-10 sm:grid-cols-3 max-w-3xl mx-auto">
+         <div class="p-4 text-left bg-white/8 rounded-2xl border border-white/10">
+           <div class="text-2xl font-black text-white">专业场景</div>
+           <p class="mt-2 text-sm leading-6 text-slate-300">围绕官网、资料、会议、接待与国际业务沟通展开。</p>
+         </div>
+         <div class="p-4 text-left bg-white/8 rounded-2xl border border-white/10">
+           <div class="text-2xl font-black text-white">稳妥交付</div>
+           <p class="mt-2 text-sm leading-6 text-slate-300">关注术语统一、表达一致和真实使用效果。</p>
+         </div>
+         <div class="p-4 text-left bg-white/8 rounded-2xl border border-white/10">
+           <div class="text-2xl font-black text-white">长期协作</div>
+           <p class="mt-2 text-sm leading-6 text-slate-300">适合持续有对外材料和国际沟通需求的客户。</p>
+         </div>
+       </div>
+     </div>
+   </div>
+ </section>
+
+ <section class="px-4 py-14 mx-auto max-w-7xl sm:px-6 lg:px-8">
+   <div class="max-w-3xl">
+     <p class="text-sm font-semibold tracking-[0.18em] text-primary-600 uppercase">快速入口</p>
+     <h2 class="mt-3 text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl dark:text-white">
+       {{ .Site.Params.P8.Heading }}
+     </h2>
+     {{ range .Site.Params.P8.Content }}
+     <p class="mt-5 text-lg leading-8 text-gray-700 dark:text-gray-300">{{ .text }}</p>
+     {{ end }}
+   </div>
+   <div class="grid gap-5 mt-10 lg:grid-cols-4 md:grid-cols-2">
+     {{ range .Site.Params.P8.Paths }}
+     <a href="{{ .url | absLangURL }}" class="group block p-6 h-full bg-white rounded-3xl border border-gray-200 shadow-sm transition-transform hover:-translate-y-1 hover:shadow-lg dark:bg-gray-900/20 dark:border-gray-800">
+       <div class="flex justify-between items-start">
+         <div class="flex justify-center items-center w-12 h-12 text-lg font-black text-white bg-primary-500 rounded-2xl">
+           {{ slicestr .title 0 1 }}
+         </div>
+         <span class="text-sm font-semibold text-primary-600 transition-transform group-hover:translate-x-1 dark:text-primary-300">{{ .button }}</span>
+       </div>
+       <h3 class="mt-5 text-xl font-bold text-gray-900 dark:text-white">{{ .title }}</h3>
+       <p class="mt-3 text-base leading-7 text-gray-700 dark:text-gray-300">{{ .text }}</p>
+     </a>
+     {{ end }}
+   </div>
+ </section>
+
+ <section id="service-overview" class="px-4 py-16 mx-auto max-w-7xl sm:px-6 lg:px-8">
+   <div class="grid gap-8 lg:grid-cols-[0.92fr_1.08fr] lg:items-start">
+     <div class="lg:sticky lg:top-24">
+       <p class="text-sm font-semibold tracking-[0.18em] text-primary-600 uppercase">服务切换</p>
+       <h2 class="mt-3 text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl dark:text-white">
+         {{ .Site.Params.P2.Heading }}
+       </h2>
+       {{ range .Site.Params.P2.Content }}
+       <p class="mt-5 text-lg leading-8 text-gray-700 dark:text-gray-300">{{ .text }}</p>
+       {{ end }}
+       <div class="flex flex-col gap-3 mt-8 sm:flex-row">
+         <a href="https://wj.qq.com/s2/27020606/8eec/" target="_blank" rel="noopener noreferrer" class="inline-flex justify-center items-center px-5 py-3 text-base font-semibold text-white bg-primary-500 rounded-lg transition-colors hover:bg-primary-600">
+           快速获取报价
+         </a>
+         <a href="{{ "/about/" | absLangURL }}" class="inline-flex justify-center items-center px-5 py-3 text-base font-semibold text-primary-700 bg-primary-50 rounded-lg transition-colors hover:bg-primary-100 dark:text-primary-200 dark:bg-primary-500/10 dark:hover:bg-primary-500/15">
+           了解合作方式
+         </a>
+       </div>
+     </div>
+     <div class="p-4 bg-gray-50 rounded-[2rem] border border-gray-200 dark:bg-gray-900/20 dark:border-gray-800">
+       <div class="flex overflow-x-auto gap-3 pb-3 no-scrollbar" data-tab-group="services">
+         {{ range $index, $service := .Site.Params.P2.Services }}
+         <button type="button" data-tab-target="service-panel-{{ $index }}" class="tab-trigger inline-flex flex-shrink-0 items-center px-4 py-2.5 text-sm font-semibold rounded-full border transition-colors {{ if eq $index 0 }}bg-primary-500 text-white border-primary-500{{ else }}bg-white text-gray-700 border-gray-200 hover:border-primary-300 hover:text-primary-700 dark:bg-gray-950/30 dark:text-gray-200 dark:border-gray-700{{ end }}">
+           {{ .title }}
+         </button>
+         {{ end }}
+       </div>
+       <div class="mt-4 space-y-4">
+         {{ range $index, $service := .Site.Params.P2.Services }}
+         <div id="service-panel-{{ $index }}" class="tab-panel {{ if ne $index 0 }}hidden{{ end }} p-6 bg-white rounded-[1.5rem] border border-gray-200 shadow-sm dark:bg-gray-950/30 dark:border-gray-800">
+           <div class="flex flex-wrap gap-3 justify-between items-start">
+             <div>
+               <p class="text-sm font-semibold tracking-[0.18em] text-primary-600 uppercase">服务模块</p>
+               <h3 class="mt-2 text-2xl font-bold text-gray-900 dark:text-white">{{ .title }}</h3>
+             </div>
+             <span class="inline-flex px-3 py-1 text-sm font-semibold text-primary-700 bg-primary-50 rounded-full dark:text-primary-200 dark:bg-primary-500/10">{{ .label }}</span>
+           </div>
+           <p class="mt-4 text-lg leading-8 text-gray-700 dark:text-gray-300">{{ .text }}</p>
+           <div class="grid gap-3 mt-6 sm:grid-cols-3">
+             {{ range .points }}
+             <div class="p-4 bg-gray-50 rounded-2xl border border-gray-200 dark:bg-gray-900/30 dark:border-gray-800">
+               <p class="text-sm leading-6 text-gray-700 dark:text-gray-300">{{ . }}</p>
+             </div>
+             {{ end }}
+           </div>
+         </div>
+         {{ end }}
+       </div>
+     </div>
+   </div>
+ </section>
+
+ <section class="px-4 py-14 mx-auto max-w-7xl sm:px-6 lg:px-8">
+   <div class="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+     <div>
+       <p class="text-sm font-semibold tracking-[0.18em] text-primary-600 uppercase">为什么选择我们</p>
+       <h2 class="mt-3 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl dark:text-gray-50">{{ .Site.Params.P3.Heading }}</h2>
+       {{ range .Site.Params.P3.Content }}
+       <p class="mt-5 text-lg leading-8 text-gray-700 dark:text-gray-300">{{ .text }}</p>
+       {{ end }}
+       {{ range first 1 .Site.Params.P1.Content }}
+       <p class="mt-5 text-base leading-7 text-gray-600 dark:text-gray-400">{{ .text }}</p>
+       {{ end }}
+     </div>
+     <div class="grid gap-4 sm:grid-cols-2">
+       {{ range .Site.Params.P3.Cards }}
+       <div class="p-6 bg-white rounded-3xl border border-gray-200 shadow-sm dark:bg-gray-900/20 dark:border-gray-800">
+         <h3 class="text-xl font-bold text-gray-900 dark:text-white">{{ .title }}</h3>
+         <p class="mt-3 text-base leading-7 text-gray-700 dark:text-gray-300">{{ .text }}</p>
+       </div>
+       {{ end }}
+     </div>
+   </div>
+ </section>
+
+ <section class="px-4 py-16 mx-auto max-w-7xl sm:px-6 lg:px-8">
+   <div class="grid gap-8 lg:grid-cols-[1.08fr_0.92fr]">
+     <div class="p-6 bg-white rounded-[2rem] border border-gray-200 shadow-sm dark:bg-gray-900/20 dark:border-gray-800">
+       <p class="text-sm font-semibold tracking-[0.18em] text-primary-600 uppercase">常见问题</p>
+       <h2 class="mt-3 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl dark:text-white">{{ .Site.Params.faq.Heading }}</h2>
+       {{ range .Site.Params.faq.Content }}
+       <p class="mt-5 text-lg leading-8 text-gray-700 dark:text-gray-300">{{ .text }}</p>
+       {{ end }}
+       <div class="mt-8 space-y-3">
+         {{ range .Site.Params.faq.Items }}
+         <details class="p-5 bg-gray-50 rounded-2xl border border-gray-200 group dark:bg-gray-950/20 dark:border-gray-800">
+           <summary class="flex gap-4 justify-between items-center text-base font-semibold text-gray-900 list-none cursor-pointer dark:text-white">
+             <span>{{ .question }}</span>
+             <span class="text-primary-600 transition-transform group-open:rotate-45 dark:text-primary-300">+</span>
+           </summary>
+           <p class="mt-4 leading-7 text-gray-700 dark:text-gray-300">{{ .answer }}</p>
+         </details>
+         {{ end }}
+       </div>
+     </div>
+     <div class="overflow-hidden relative p-6 bg-primary-800 rounded-[2rem] border border-white/10">
+       <div class="absolute top-0 right-0 w-72 h-72 bg-primary-500/20 rounded-full blur-3xl"></div>
+       <div class="relative">
+         <p class="text-sm font-semibold tracking-[0.18em] text-primary-200 uppercase">合作流程</p>
+         <h2 class="mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl">{{ .Site.Params.P7.Heading }}</h2>
+         {{ range .Site.Params.P7.Content }}
+         <p class="mt-5 text-lg leading-8 text-slate-300">{{ .text }}</p>
+         {{ end }}
+         <div class="mt-8 space-y-4">
+           {{ range $index, $step := .Site.Params.P7.Steps }}
+           <div class="flex gap-4 items-start p-4 bg-white/6 rounded-2xl border border-white/10">
+             <div class="flex justify-center items-center w-10 h-10 text-sm font-black text-white bg-white/12 rounded-xl">{{ add $index 1 }}</div>
+             <div>
+               <h3 class="text-lg font-bold text-white">{{ $step.title }}</h3>
+               <p class="mt-2 text-sm leading-6 text-slate-300">{{ $step.text }}</p>
+             </div>
+           </div>
+           {{ end }}
+         </div>
+       </div>
+     </div>
+   </div>
+ </section>
+
+ <section class="px-4 py-14 mx-auto max-w-7xl sm:px-6 lg:px-8">
+   <div class="text-center">
+     <p class="text-sm font-semibold tracking-[0.18em] text-primary-600 uppercase">核心入口</p>
+     <h2 class="mt-3 text-3xl font-black tracking-tight text-primary-500 dark:text-primary-300 sm:text-4xl">{{ .Site.Params.P4.Heading }}</h2>
+     {{ range .Site.Params.P4.Content }}
+     <p class="mx-auto mt-4 max-w-2xl text-lg leading-8 text-gray-700 dark:text-gray-300">{{ .text }}</p>
+     {{ end }}
+   </div>
+   <div class="grid gap-5 mt-10 md:grid-cols-2 xl:grid-cols-4">
+     {{ range .Site.Params.P4.Sections }}
+     <a href="{{ .url | absLangURL }}" class="block p-6 h-full bg-white rounded-3xl border border-gray-200 shadow-sm transition-transform hover:-translate-y-1 hover:shadow-lg dark:bg-gray-900/20 dark:border-gray-800">
+       <div class="flex justify-center items-center mb-5 w-12 h-12 text-lg font-black text-white bg-primary-500 rounded-2xl">{{ slicestr .title 0 1 }}</div>
+       <h3 class="text-xl font-bold text-gray-900 dark:text-white">{{ .title }}</h3>
+       <p class="mt-3 text-base leading-7 text-gray-700 dark:text-gray-300">{{ .text }}</p>
+     </a>
+     {{ end }}
+   </div>
+   {{ with .Site.Params.P4.Article_link }}
+   <div class="mt-8 text-center">
+     <a href="{{ .url | absLangURL }}" class="inline-flex items-center text-base font-semibold text-primary-600 transition-colors hover:text-primary-700 dark:text-primary-300 dark:hover:text-primary-200">{{ .text }}</a>
+   </div>
+   {{ end }}
+ </section>
+
+ <section class="px-4 py-16 mx-auto max-w-7xl sm:px-6 lg:px-8">
+   <div class="overflow-hidden relative p-8 bg-linear-to-br from-primary-600 via-primary-700 to-slate-900 rounded-[2rem] lg:p-12">
+     <div class="absolute top-0 right-0 w-72 h-72 bg-white/10 rounded-full blur-3xl"></div>
+     <div class="absolute bottom-0 left-0 w-80 h-80 bg-secondary-400/15 rounded-full blur-3xl"></div>
+     <div class="relative flex flex-col gap-8 lg:flex-row lg:justify-between lg:items-end">
+       <div class="max-w-3xl">
+         <p class="text-sm font-semibold tracking-[0.18em] text-primary-100 uppercase">提交需求</p>
+         <h2 class="mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl">{{ .Site.Params.P5.Heading }}</h2>
+         {{ range .Site.Params.P5.Content }}
+         <p class="mt-5 text-lg leading-8 text-primary-50/90">{{ .text }}</p>
+         {{ end }}
+       </div>
+       <div class="flex flex-col gap-3 sm:flex-row lg:flex-shrink-0">
+         {{ range .Site.Params.P5.Buttons }}
+         <a href="{{ .url | absLangURL }}" class="inline-flex justify-center items-center px-6 py-3 text-base font-semibold rounded-lg transition-colors {{ if eq .url "/contact/" }}text-primary-700 bg-white hover:bg-primary-50{{ else }}text-white border border-white/20 bg-white/10 hover:bg-white/15{{ end }}">
+           {{ .text }}
+         </a>
+         {{ end }}
+       </div>
+     </div>
+   </div>
+ </section>
+
+ <script>
+ document.addEventListener("DOMContentLoaded", function () {
+   document.querySelectorAll("[data-tab-group]").forEach(function (group) {
+     var triggers = group.querySelectorAll(".tab-trigger");
+     var panels = group.parentElement.querySelectorAll(".tab-panel");
+     triggers.forEach(function (trigger) {
+       trigger.addEventListener("click", function () {
+         var target = trigger.getAttribute("data-tab-target");
+         triggers.forEach(function (item) {
+           item.classList.remove("bg-primary-500", "text-white", "border-primary-500");
+           item.classList.add("bg-white", "text-gray-700", "border-gray-200", "dark:bg-gray-950/30", "dark:text-gray-200", "dark:border-gray-700");
+         });
+         panels.forEach(function (panel) {
+           panel.classList.add("hidden");
+         });
+         trigger.classList.add("bg-primary-500", "text-white", "border-primary-500");
+         trigger.classList.remove("bg-white", "text-gray-700", "border-gray-200", "dark:bg-gray-950/30", "dark:text-gray-200", "dark:border-gray-700");
+         var active = document.getElementById(target);
+         if (active) {
+           active.classList.remove("hidden");
+         }
+       });
+     });
+   });
+ });
+ </script>
+
+ {{ partial "newsletter.html" . }}
+</main>
+{{ end }}
