@@ -10,6 +10,17 @@
 <meta name="theme-color" content="#ffffff">
 {{ partial "meta" . }}
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "显福翻译",
+  "url": "{{ .Site.BaseURL }}",
+  "description": "{{ .Site.Params.description }}",
+  "image": "{{ .Site.Params.og_image | absURL }}"
+}
+</script>
+
 {{/* DNS prefetch and preconnect for external resources */}}
 <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
 <link href="https://cdn.jsdelivr.net" rel="preconnect" crossorigin="anonymous">
