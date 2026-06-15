@@ -15,7 +15,6 @@
     "vite": "^8.0.14"
   },
   "scripts": {
-    "install": "node install.js",
     "dev": "npm run build:css:dev && hugo server --disableFastRender --noHTTPCache --disableBrowserError",
     "dev:watch": "concurrently \"npm run css:watch\" \"npm run hugo:watch\"",
     "css:watch": "vite build --mode development --watch",
@@ -50,9 +49,5 @@
     "url": "https://github.com/nusserstudios/tailbliss/issues"
   },
   "homepage": "https://github.com/nusserstudios/tailbliss",
-  "pnpm": {
-    "overrides": {
-      "tar": ">=7.5.2"
-    }
-  }
+
 }

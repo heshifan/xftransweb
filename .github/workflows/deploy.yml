@@ -23,7 +23,7 @@ jobs:
         with:
           node-version: 20
       - name: 安装依赖
-        run: npm ci
+        run: npm install
       - uses: peaceiris/actions-hugo@v3
         with:
           hugo-version: "latest"
