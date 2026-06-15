@@ -47,7 +47,7 @@ markup:
 params:
  author: 显福翻译
  authorimage: ../assets/images/global/author.webp
- og_image: /images/logo.png
+ og_image: /images/logo.webp
  moto: "让专业内容，准确进入国际语境"
  description: "显福翻译长期为政府、企业与专业机构提供笔译、口译、本地化与语言支持服务，总共支持项目3000+，服务客户500+，我们拥有专业的翻译与管理团队，致力于帮助官网内容、项目文件与国际沟通表达更准确、更专业。"
  disable_theme_toggle: true

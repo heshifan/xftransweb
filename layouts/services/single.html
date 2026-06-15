@@ -286,7 +286,7 @@
  <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
  {{ range $i := seq $count }}
  {{ $num := printf "%02d" $i }}
- {{ $path := printf "/images/services/%s-%s.png" $prefix $num }}
+ {{ $path := printf "/images/services/%s-%s.webp" $prefix $num }}
  {{ $label := index $labels (sub $i 1) }}
  <div class="group overflow-hidden rounded-xl bg-gray-100 shadow-sm">
  <img src="{{ $path }}" alt="{{ $label }}" class="w-full aspect-[4/3] object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" />
