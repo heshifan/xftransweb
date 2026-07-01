@@ -1,317 +1,166 @@
 {{ define "main" }}
+{{ $isEN := eq .Language.Lang "en" }}
+
+{{/* ====== Common Translations ====== */}}
+{{ $labelServiceDetail := "服务详情" }}{{ $labelServiceDetailEN := "Service Details" }}
+{{ $labelCoreService := "核心服务" }}{{ $labelCoreServiceEN := "Core Services" }}
+{{ $labelScene := "场景展示" }}{{ $labelSceneEN := "In Action" }}
+{{ $labelSubtitle := "服务实景" }}{{ $labelSubtitleEN := "Real Service Scenarios" }}
+{{ $labelSceneDesc := "工作中的真实场景，感受我们的专业交付环境" }}{{ $labelSceneDescEN := "Real scenes from our work — see our professional delivery environment" }}
+{{ $labelNeed := "需要这项服务？" }}{{ $labelNeedEN := "Need This Service?" }}
+{{ $labelNeedDesc := "把材料或需求说明发来，我们帮你判断服务方式，并提供报价。" }}{{ $labelNeedDescEN := "Send us your materials or requirements, and we'll assess the best approach and provide a quote." }}
+{{ $labelGetQuote := "获取报价" }}{{ $labelGetQuoteEN := "Get a Quote" }}
+{{ $labelHome := "返回首页" }}{{ $labelHomeEN := "Back to Home" }}
+
+{{/* ====== Translation Service Cards ====== */}}
+{{ $transCards := slice
+  (dict "title" "Document Translation" "badge" "Reports / Company Materials" "desc" "Company profiles, annual reports, business plans, and other corporate documents translated between Chinese and English with professional tone and readability.")
+  (dict "title" "Contract Translation" "badge" "Legal Contracts / Agreements" "desc" "Contracts, agreements, terms, and other legal texts — precise terminology, proper syntax, and preserved legal force.")
+  (dict "title" "Bid Translation" "badge" "Tender Docs / Bid Materials" "desc" "Bid and tender documents translated with consistent terminology and complete formatting to meet overseas procurement requirements.")
+  (dict "title" "Technical Translation" "badge" "Manuals / Specifications" "desc" "User manuals, technical specifications, product documentation — ensuring technical accuracy and consistency.")
+  (dict "title" "Certificate Translation" "badge" "IDs / Passports / Diplomas" "desc" "Passports, IDs, diplomas, business licenses — high-demand, standard-format delivery.")
+  (dict "title" "Financial Translation" "badge" "Audit Reports / Tax Docs" "desc" "Audit reports, financial statements, tax documents, capital verification — precise financial terminology.")
+  (dict "title" "Medical Translation" "badge" "Clinical Reports / Drug Info" "desc" "Clinical reports, drug instructions, medical device docs, paper abstracts — accurate medical terminology.")
+  (dict "title" "Legal Translation" "badge" "Litigation / Notarization" "desc" "Litigation documents, notarized materials, judgments, arbitration documents — rigorous and precise.")
+  (dict "title" "Academic Translation" "badge" "Journal / Thesis Papers" "desc" "Journal papers, research reports, dissertations, conference abstracts — familiar with academic standards.")
+  (dict "title" "Transcreation" "badge" "Slogans / Brand Copy" "desc" "Creative translation of advertising copy, brand messaging, and slogans — culturally adapted for impact.")
+  (dict "title" "Certified Translation" "badge" "Visa / Immigration / Study" "desc" "Formal certified translations with translator signature and company seal for visa, immigration, and study abroad applications.")
+  (dict "title" "Marketing Translation" "badge" "Ads / Promotional Content" "desc" "Marketing collateral, ad copy, and promotional materials — emphasizing persuasive power and cultural fit.")
+}}
+{{ $interpCards := slice
+  (dict "title" "Business Escort Interpretation" "badge" "Client Reception / Meetings" "desc" "One-on-one escort interpretation for business meetings, client visits, and factory tours — interpreters familiar with business etiquette and industry context.")
+  (dict "title" "Exhibition Interpretation" "badge" "Booth Reception / Onsite Talks" "desc" "Interpretation for trade show booths, product demonstrations, and onsite negotiations — enabling smooth cross-language communication.")
+  (dict "title" "Simultaneous Interpretation" "badge" "Conferences / Forums" "desc" "Professional simultaneous interpretation for international conferences, high-level forums, and large-scale events.")
+  (dict "title" "SI Equipment Rental" "badge" "Console / Receivers / Booth" "desc" "Full simultaneous interpretation equipment: consoles, receivers, interpreter booths, and technical support.")
+  (dict "title" "Consecutive Interpretation" "badge" "Formal Meetings / Speeches" "desc" "Consecutive interpretation for formal meetings, banquet speeches — more formal than escort, more flexible than simultaneous.")
+  (dict "title" "Remote Interpretation" "badge" "Video Conferencing / Online" "desc" "Remote interpretation via video conferencing platforms, suitable for international calls and virtual meetings.")
+}}
+{{ $localCards := slice
+  (dict "title" "Website Localization" "badge" "Global Websites / Multi-language" "desc" "Full website localization for global markets — adapting content, UI, and cultural references for target audiences.")
+  (dict "title" "Audio/Video Localization" "badge" "Subtitles / Dubbing / Post" "desc" "Subtitling, voice-over, dubbing, and post-production for videos, e-learning, and promotional content.")
+  (dict "title" "App/Software Localization" "badge" "iOS / Android / Desktop" "desc" "UI string localization, cultural adaptation, and QA testing for mobile apps and desktop software.")
+  (dict "title" "Game Localization" "badge" "Mobile / PC / Cultural Fit" "desc" "Game text, UI, and cultural adaptation — ensuring an authentic experience for players worldwide.")
+  (dict "title" "Social Media Localization" "badge" "LinkedIn / Twitter / IG" "desc" "Overseas social media content writing and localization — tailored to platform-specific expression and cultural context.")
+  (dict "title" "E-commerce Localization" "badge" "Product Listings / CS Copy" "desc" "Cross-border e-commerce product listing optimization, product description localization, and multilingual customer service copy to boost conversion.")
+}}
+
+{{/* ====== Scene Labels per Service ====== */}}
+{{ $transScenes := slice "Translator Review" "Bid Translation" "Contract Translation" "CAT Tool (Trados) Translation" "Minor Language Certification Translation" "Translator Certificate Showcase" }}
+{{ $interpScenes := slice "AI Summit SI" "Business Negotiation Interpretation" "Exhibition Interpretation" "Remote Online Interpretation" "Conference Consecutive Interpretation" "Bosch SI Equipment Rental" }}
+{{ $localScenes := slice "Video Localization" "Game Localization" "Website Localization" }}
+
 <main>
- <header class="py-14 bg-primary-600">
- <div class="px-4 mx-auto max-w-4xl text-center">
- <p class="text-sm font-semibold tracking-[0.18em] text-primary-100 uppercase">服务详情</p>
- <h1 class="mt-3 text-4xl font-extrabold tracking-tight text-white md:text-5xl">{{ .Title }}</h1>
- <p class="mt-4 text-lg leading-8 text-primary-100 max-w-2xl mx-auto">{{ .Params.description }}</p>
- </div>
- </header>
+  <header class="py-14 bg-primary-600">
+    <div class="px-4 mx-auto max-w-4xl text-center">
+      <p class="text-sm font-semibold tracking-[0.18em] text-primary-100 uppercase">{{ if $isEN }}{{ $labelServiceDetailEN }}{{ else }}{{ $labelServiceDetail }}{{ end }}</p>
+      <h1 class="mt-3 text-4xl font-extrabold tracking-tight text-white md:text-5xl">{{ .Title }}</h1>
+      <p class="mt-4 text-lg leading-8 text-primary-100 max-w-2xl mx-auto">{{ .Params.description }}</p>
+    </div>
+  </header>
 
- <div class="px-4 py-16 mx-auto max-w-6xl sm:px-6 lg:px-8">
+  <div class="px-4 py-16 mx-auto max-w-6xl sm:px-6 lg:px-8">
 
- {{/* ====================== 笔译服务 ====================== */}}
- {{ if or (eq .Title "笔译服务") (eq .Title "Translation Services") }}
- <div class="mb-8">
- <p class="text-sm font-semibold tracking-[0.18em] text-primary-600 uppercase">核心服务</p>
- <h2 class="mt-2 text-2xl font-bold text-gray-900 dark:text-white">核心笔译服务</h2>
- </div>
- <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
- <div class="p-5 bg-white rounded-xl border border-gray-200 shadow-sm transition-shadow hover:shadow-md dark:bg-gray-900/20 dark:border-gray-800">
- <div class="flex items-center gap-3 mb-3">
- <div class="flex justify-center items-center w-10 h-10 text-white bg-primary-500 rounded-lg flex-shrink-0"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/></svg></div>
- <div><h3 class="text-base font-bold text-gray-900 dark:text-white">文件翻译</h3><p class="text-xs text-gray-500">商业报告 / 公司资料</p></div>
- </div>
- <p class="text-sm leading-6 text-gray-600 dark:text-gray-400">公司介绍、年度报告、商业计划等商业文件中英互译，注重表达专业感与可读性。</p>
- </div>
- <div class="p-5 bg-white rounded-xl border border-gray-200 shadow-sm transition-shadow hover:shadow-md dark:bg-gray-900/20 dark:border-gray-800">
- <div class="flex items-center gap-3 mb-3">
- <div class="flex justify-center items-center w-10 h-10 text-white bg-primary-500 rounded-lg flex-shrink-0"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
- <div><h3 class="text-base font-bold text-gray-900 dark:text-white">合同翻译</h3><p class="text-xs text-gray-500">法律合同 / 合作协议</p></div>
- </div>
- <p class="text-sm leading-6 text-gray-600 dark:text-gray-400">合同、协议、条款等法律文本翻译，侧重术语严谨、句式规范和法律效力传递。</p>
- </div>
- <div class="p-5 bg-white rounded-xl border border-gray-200 shadow-sm transition-shadow hover:shadow-md dark:bg-gray-900/20 dark:border-gray-800">
- <div class="flex items-center gap-3 mb-3">
- <div class="flex justify-center items-center w-10 h-10 text-white bg-primary-500 rounded-lg flex-shrink-0"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15a2.25 2.25 0 012.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25zM6.75 12h.008v.008H6.75V12zm0 3h.008v.008H6.75V15zm0 3h.008v.008H6.75V18z"/></svg></div>
- <div><h3 class="text-base font-bold text-gray-900 dark:text-white">标书翻译</h3><p class="text-xs text-gray-500">招标文件 / 投标材料</p></div>
- </div>
- <p class="text-sm leading-6 text-gray-600 dark:text-gray-400">招投标文件中英互译，注重术语一致、格式完整，确保投标材料符合海外招标要求。</p>
- </div>
- <div class="p-5 bg-white rounded-xl border border-gray-200 shadow-sm transition-shadow hover:shadow-md dark:bg-gray-900/20 dark:border-gray-800">
- <div class="flex items-center gap-3 mb-3">
- <div class="flex justify-center items-center w-10 h-10 text-white bg-primary-500 rounded-lg flex-shrink-0"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5"/></svg></div>
- <div><h3 class="text-base font-bold text-gray-900 dark:text-white">技术文档翻译</h3><p class="text-xs text-gray-500">操作手册 / 说明书</p></div>
- </div>
- <p class="text-sm leading-6 text-gray-600 dark:text-gray-400">操作手册、技术规范、产品说明等专业文档翻译，确保技术内容准确一致。</p>
- </div>
- <div class="p-5 bg-white rounded-xl border border-gray-200 shadow-sm transition-shadow hover:shadow-md dark:bg-gray-900/20 dark:border-gray-800">
- <div class="flex items-center gap-3 mb-3">
- <div class="flex justify-center items-center w-10 h-10 text-white bg-primary-500 rounded-lg flex-shrink-0"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg></div>
- <div><h3 class="text-base font-bold text-gray-900 dark:text-white">证件翻译</h3><p class="text-xs text-gray-500">身份证 / 护照 / 学历证书</p></div>
- </div>
- <p class="text-sm leading-6 text-gray-600 dark:text-gray-400">护照、身份证、学历证书、营业执照等个人与企业证件翻译，高频刚需，标准格式交付。</p>
- </div>
- <div class="p-5 bg-white rounded-xl border border-gray-200 shadow-sm transition-shadow hover:shadow-md dark:bg-gray-900/20 dark:border-gray-800">
- <div class="flex items-center gap-3 mb-3">
- <div class="flex justify-center items-center w-10 h-10 text-white bg-primary-500 rounded-lg flex-shrink-0"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941"/></svg></div>
- <div><h3 class="text-base font-bold text-gray-900 dark:text-white">财务报表翻译</h3><p class="text-xs text-gray-500">审计报告 / 税务文件</p></div>
- </div>
- <p class="text-sm leading-6 text-gray-600 dark:text-gray-400">审计报告、财务报表、税务文件、验资报告等财务资料的专业翻译，术语精准。</p>
- </div>
- <div class="p-5 bg-white rounded-xl border border-gray-200 shadow-sm transition-shadow hover:shadow-md dark:bg-gray-900/20 dark:border-gray-800">
- <div class="flex items-center gap-3 mb-3">
- <div class="flex justify-center items-center w-10 h-10 text-white bg-primary-500 rounded-lg flex-shrink-0"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"/></svg></div>
- <div><h3 class="text-base font-bold text-gray-900 dark:text-white">医学翻译</h3><p class="text-xs text-gray-500">临床报告 / 药品说明</p></div>
- </div>
- <p class="text-sm leading-6 text-gray-600 dark:text-gray-400">临床报告、药品说明书、医疗器械文档、论文摘要等医学资料的精准翻译。</p>
- </div>
- <div class="p-5 bg-white rounded-xl border border-gray-200 shadow-sm transition-shadow hover:shadow-md dark:bg-gray-900/20 dark:border-gray-800">
- <div class="flex items-center gap-3 mb-3">
- <div class="flex justify-center items-center w-10 h-10 text-white bg-primary-500 rounded-lg flex-shrink-0"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg></div>
- <div><h3 class="text-base font-bold text-gray-900 dark:text-white">法律文书翻译</h3><p class="text-xs text-gray-500">诉讼文件 / 公证材料</p></div>
- </div>
- <p class="text-sm leading-6 text-gray-600 dark:text-gray-400">诉讼文件、公证材料、判决书、仲裁文件等法律文书翻译，严谨规范。</p>
- </div>
- <div class="p-5 bg-white rounded-xl border border-gray-200 shadow-sm transition-shadow hover:shadow-md dark:bg-gray-900/20 dark:border-gray-800">
- <div class="flex items-center gap-3 mb-3">
- <div class="flex justify-center items-center w-10 h-10 text-white bg-primary-500 rounded-lg flex-shrink-0"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg></div>
- <div><h3 class="text-base font-bold text-gray-900 dark:text-white">学术论文翻译</h3><p class="text-xs text-gray-500">期刊论文 / 学位论文</p></div>
- </div>
- <p class="text-sm leading-6 text-gray-600 dark:text-gray-400">期刊论文、研究报告、学位论文、会议摘要翻译，熟悉学术规范与投稿要求。</p>
- </div>
- <div class="p-5 bg-white rounded-xl border border-gray-200 shadow-sm transition-shadow hover:shadow-md dark:bg-gray-900/20 dark:border-gray-800">
- <div class="flex items-center gap-3 mb-3">
- <div class="flex justify-center items-center w-10 h-10 text-white bg-primary-500 rounded-lg flex-shrink-0"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z"/></svg></div>
- <div><h3 class="text-base font-bold text-gray-900 dark:text-white">创译/营销翻译</h3><p class="text-xs text-gray-500">广告语 / 品牌文案</p></div>
- </div>
- <p class="text-sm leading-6 text-gray-600 dark:text-gray-400">广告语、品牌文案、slogan创意翻译，不只是语言转换，更注重传播效果与文化适配。</p>
- </div>
- <div class="p-5 bg-white rounded-xl border border-gray-200 shadow-sm transition-shadow hover:shadow-md dark:bg-gray-900/20 dark:border-gray-800">
- <div class="flex items-center gap-3 mb-3">
- <div class="flex justify-center items-center w-10 h-10 text-white bg-primary-500 rounded-lg flex-shrink-0"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg></div>
- <div><h3 class="text-base font-bold text-gray-900 dark:text-white">认证翻译</h3><p class="text-xs text-gray-500">签证 / 移民 / 留学</p></div>
- </div>
- <p class="text-sm leading-6 text-gray-600 dark:text-gray-400">带译员签字与公司盖章的正式认证翻译件，用于签证申请、移民手续与留学材料。</p>
- </div>
- <div class="p-5 bg-white rounded-xl border border-gray-200 shadow-sm transition-shadow hover:shadow-md dark:bg-gray-900/20 dark:border-gray-800">
- <div class="flex items-center gap-3 mb-3">
- <div class="flex justify-center items-center w-10 h-10 text-white bg-primary-500 rounded-lg flex-shrink-0"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0021 18V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v12a2.25 2.25 0 002.25 2.25z"/></svg></div>
- <div><h3 class="text-base font-bold text-gray-900 dark:text-white">软件/UI翻译</h3><p class="text-xs text-gray-500">APP / 界面 / 帮助文档</p></div>
- </div>
- <p class="text-sm leading-6 text-gray-600 dark:text-gray-400">软件界面字符串、APP文案、帮助文档本地化翻译，注重字符长度适配与用户体验。</p>
- </div>
- <div class="p-5 bg-white rounded-xl border border-gray-200 shadow-sm transition-shadow hover:shadow-md dark:bg-gray-900/20 dark:border-gray-800">
- <div class="flex items-center gap-3 mb-3">
- <div class="flex justify-center items-center w-10 h-10 text-white bg-primary-500 rounded-lg flex-shrink-0"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/></svg></div>
- <div><h3 class="text-base font-bold text-gray-900 dark:text-white">电商翻译</h3><p class="text-xs text-gray-500">产品标题 / 商品描述</p></div>
- </div>
- <p class="text-sm leading-6 text-gray-600 dark:text-gray-400">亚马逊、Shopify等平台产品标题、商品描述、详情页翻译，注重关键词与转化率。</p>
- </div>
- </div>
- {{ end }}
+  {{/* ====== Translation Service ====== */}}
+  {{ if or (eq .Title "笔译服务") (eq .Title "Translation Services") }}
+  <div class="mb-8">
+    <p class="text-sm font-semibold tracking-[0.18em] text-primary-600 uppercase">{{ if $isEN }}{{ $labelCoreServiceEN }}{{ else }}{{ $labelCoreService }}{{ end }}</p>
+    <h2 class="mt-2 text-2xl font-bold text-gray-900 dark:text-white">{{ if $isEN }}Core Translation Services{{ else }}核心笔译服务{{ end }}</h2>
+  </div>
+  <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+    {{ range $transCards }}
+    <div class="p-5 bg-white rounded-xl border border-gray-200 shadow-sm transition-shadow hover:shadow-md dark:bg-gray-900/20 dark:border-gray-800">
+      <div class="flex items-center gap-3 mb-3">
+        <div class="flex justify-center items-center w-10 h-10 text-white bg-primary-500 rounded-lg flex-shrink-0"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/></svg></div>
+        <div><h3 class="text-base font-bold text-gray-900 dark:text-white">{{ .title }}</h3><p class="text-xs text-gray-500">{{ .badge }}</p></div>
+      </div>
+      <p class="text-sm leading-6 text-gray-600 dark:text-gray-400">{{ .desc }}</p>
+    </div>
+    {{ end }}
+  </div>
+  {{ end }}
 
- {{/* ====================== 口译服务 ====================== */}}
- {{ if or (eq .Title "口译服务") (eq .Title "Interpretation Services") }}
- <div class="mb-8">
- <p class="text-sm font-semibold tracking-[0.18em] text-primary-600 uppercase">核心服务</p>
- <h2 class="mt-2 text-2xl font-bold text-gray-900 dark:text-white">核心口译服务</h2>
- </div>
- <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
- <div class="p-5 bg-white rounded-xl border border-gray-200 shadow-sm transition-shadow hover:shadow-md dark:bg-gray-900/20 dark:border-gray-800">
- <div class="flex items-center gap-3 mb-3">
- <div class="flex justify-center items-center w-10 h-10 text-white bg-primary-500 rounded-lg flex-shrink-0"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg></div>
- <div><h3 class="text-base font-bold text-gray-900 dark:text-white">商务陪同口译</h3><p class="text-xs text-gray-500">客户接待 / 商务会谈</p></div>
- </div>
- <p class="text-sm leading-6 text-gray-600 dark:text-gray-400">商务会谈、客户接待、工厂考察的一对一陪同口译，译员熟悉商务礼仪与行业语境。</p>
- </div>
- <div class="p-5 bg-white rounded-xl border border-gray-200 shadow-sm transition-shadow hover:shadow-md dark:bg-gray-900/20 dark:border-gray-800">
- <div class="flex items-center gap-3 mb-3">
- <div class="flex justify-center items-center w-10 h-10 text-white bg-primary-500 rounded-lg flex-shrink-0"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008z"/></svg></div>
- <div><h3 class="text-base font-bold text-gray-900 dark:text-white">展会陪同口译</h3><p class="text-xs text-gray-500">展位接待 / 现场洽谈</p></div>
- </div>
- <p class="text-sm leading-6 text-gray-600 dark:text-gray-400">国内外展会参展支持，产品介绍、客户接待、现场商务洽谈，快速适应展会节奏。</p>
- </div>
- <div class="p-5 bg-white rounded-xl border border-gray-200 shadow-sm transition-shadow hover:shadow-md dark:bg-gray-900/20 dark:border-gray-800">
- <div class="flex items-center gap-3 mb-3">
- <div class="flex justify-center items-center w-10 h-10 text-white bg-primary-500 rounded-lg flex-shrink-0"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z"/></svg></div>
- <div><h3 class="text-base font-bold text-gray-900 dark:text-white">同声传译</h3><p class="text-xs text-gray-500">国际会议 / 高端论坛</p></div>
- </div>
- <p class="text-sm leading-6 text-gray-600 dark:text-gray-400">高端专业译员同传国际会议、行业论坛、培训讲座，即传即译，高效沟通。</p>
- </div>
- <div class="p-5 bg-white rounded-xl border border-gray-200 shadow-sm transition-shadow hover:shadow-md dark:bg-gray-900/20 dark:border-gray-800">
- <div class="flex items-center gap-3 mb-3">
- <div class="flex justify-center items-center w-10 h-10 text-white bg-primary-500 rounded-lg flex-shrink-0"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25"/></svg></div>
- <div><h3 class="text-base font-bold text-gray-900 dark:text-white">同传设备租赁</h3><p class="text-xs text-gray-500">主机 / 接收器 / booth</p></div>
- </div>
- <p class="text-sm leading-6 text-gray-600 dark:text-gray-400">同传主机、无线接收器、翻译booth全套租赁，配套技术支持与现场保障。</p>
- </div>
- <div class="p-5 bg-white rounded-xl border border-gray-200 shadow-sm transition-shadow hover:shadow-md dark:bg-gray-900/20 dark:border-gray-800">
- <div class="flex items-center gap-3 mb-3">
- <div class="flex justify-center items-center w-10 h-10 text-white bg-primary-500 rounded-lg flex-shrink-0"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z"/></svg></div>
- <div><h3 class="text-base font-bold text-gray-900 dark:text-white">远程视频口译</h3><p class="text-xs text-gray-500">Zoom / Teams / 腾讯会议</p></div>
- </div>
- <p class="text-sm leading-6 text-gray-600 dark:text-gray-400">Zoom、Teams、腾讯会议等平台的线上实时口译，适应后疫情时代的远程沟通需求。</p>
- </div>
- <div class="p-5 bg-white rounded-xl border border-gray-200 shadow-sm transition-shadow hover:shadow-md dark:bg-gray-900/20 dark:border-gray-800">
- <div class="flex items-center gap-3 mb-3">
- <div class="flex justify-center items-center w-10 h-10 text-white bg-primary-500 rounded-lg flex-shrink-0"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/></svg></div>
- <div><h3 class="text-base font-bold text-gray-900 dark:text-white">电话口译</h3><p class="text-xs text-gray-500">电话会议 / 跨境沟通</p></div>
- </div>
- <p class="text-sm leading-6 text-gray-600 dark:text-gray-400">电话会议、跨境商务沟通的电话翻译，即时接入，灵活高效。</p>
- </div>
- <div class="p-5 bg-white rounded-xl border border-gray-200 shadow-sm transition-shadow hover:shadow-md dark:bg-gray-900/20 dark:border-gray-800">
- <div class="flex items-center gap-3 mb-3">
- <div class="flex justify-center items-center w-10 h-10 text-white bg-primary-500 rounded-lg flex-shrink-0"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg></div>
- <div><h3 class="text-base font-bold text-gray-900 dark:text-white">培训口译</h3><p class="text-xs text-gray-500">技术培训 / 管理培训</p></div>
- </div>
- <p class="text-sm leading-6 text-gray-600 dark:text-gray-400">技术培训、管理培训、产品培训的现场口译，确保培训内容准确传达给每位参与者。</p>
- </div>
- <div class="p-5 bg-white rounded-xl border border-gray-200 shadow-sm transition-shadow hover:shadow-md dark:bg-gray-900/20 dark:border-gray-800">
- <div class="flex items-center gap-3 mb-3">
- <div class="flex justify-center items-center w-10 h-10 text-white bg-primary-500 rounded-lg flex-shrink-0"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 9l10.5-3m0 6.553v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 11-.99-3.467l2.31-.66a2.25 2.25 0 001.632-2.163zm0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 01-.99-3.467l2.31-.66A2.25 2.25 0 009 15.553z"/></svg></div>
- <div><h3 class="text-base font-bold text-gray-900 dark:text-white">媒体口译</h3><p class="text-xs text-gray-500">采访 / 发布会 / 节目</p></div>
- </div>
- <p class="text-sm leading-6 text-gray-600 dark:text-gray-400">采访、新闻发布会、电视节目录制的口译支持，译员具备媒体应对经验。</p>
- </div>
- <div class="p-5 bg-white rounded-xl border border-gray-200 shadow-sm transition-shadow hover:shadow-md dark:bg-gray-900/20 dark:border-gray-800">
- <div class="flex items-center gap-3 mb-3">
- <div class="flex justify-center items-center w-10 h-10 text-white bg-primary-500 rounded-lg flex-shrink-0"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17l-5.5-5.5 5.5-5.5M17.42 15.17l-5.5-5.5 5.5-5.5"/></svg></div>
- <div><h3 class="text-base font-bold text-gray-900 dark:text-white">交替传译</h3><p class="text-xs text-gray-500">正式会议 / 宴会致辞</p></div>
- </div>
- <p class="text-sm leading-6 text-gray-600 dark:text-gray-400">正式会议、宴会致辞的交替传译，比陪同高端、比同传灵活，适合正式社交场合。</p>
- </div>
- <div class="p-5 bg-white rounded-xl border border-gray-200 shadow-sm transition-shadow hover:shadow-md dark:bg-gray-900/20 dark:border-gray-800">
- <div class="flex items-center gap-3 mb-3">
- <div class="flex justify-center items-center w-10 h-10 text-white bg-primary-500 rounded-lg flex-shrink-0"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"/></svg></div>
- <div><h3 class="text-base font-bold text-gray-900 dark:text-white">耳语口译</h3><p class="text-xs text-gray-500">小型会议 / 一对一</p></div>
- </div>
- <p class="text-sm leading-6 text-gray-600 dark:text-gray-400">小型会议的一对一耳语传译，不打断会议进程，灵活私密。</p>
- </div>
- <div class="p-5 bg-white rounded-xl border border-gray-200 shadow-sm transition-shadow hover:shadow-md dark:bg-gray-900/20 dark:border-gray-800">
- <div class="flex items-center gap-3 mb-3">
- <div class="flex justify-center items-center w-10 h-10 text-white bg-primary-500 rounded-lg flex-shrink-0"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg></div>
- <div><h3 class="text-base font-bold text-gray-900 dark:text-white">技术现场口译</h3><p class="text-xs text-gray-500">设备安装 / 产线验收</p></div>
- </div>
- <p class="text-sm leading-6 text-gray-600 dark:text-gray-400">设备安装调试、产线验收、技术交流的现场口译，译员具备专业技术背景知识。</p>
- </div>
- </div>
- {{ end }}
+  {{/* ====== Interpretation Service ====== */}}
+  {{ if or (eq .Title "口译服务") (eq .Title "Interpretation Services") }}
+  <div class="mb-8">
+    <p class="text-sm font-semibold tracking-[0.18em] text-primary-600 uppercase">{{ if $isEN }}{{ $labelCoreServiceEN }}{{ else }}{{ $labelCoreService }}{{ end }}</p>
+    <h2 class="mt-2 text-2xl font-bold text-gray-900 dark:text-white">{{ if $isEN }}Core Interpretation Services{{ else }}核心口译服务{{ end }}</h2>
+  </div>
+  <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+    {{ range $interpCards }}
+    <div class="p-5 bg-white rounded-xl border border-gray-200 shadow-sm transition-shadow hover:shadow-md dark:bg-gray-900/20 dark:border-gray-800">
+      <div class="flex items-center gap-3 mb-3">
+        <div class="flex justify-center items-center w-10 h-10 text-white bg-primary-500 rounded-lg flex-shrink-0"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg></div>
+        <div><h3 class="text-base font-bold text-gray-900 dark:text-white">{{ .title }}</h3><p class="text-xs text-gray-500">{{ .badge }}</p></div>
+      </div>
+      <p class="text-sm leading-6 text-gray-600 dark:text-gray-400">{{ .desc }}</p>
+    </div>
+    {{ end }}
+  </div>
+  {{ end }}
 
- {{/* ====================== 本地化翻译 ====================== */}}
- {{ if or (eq .Title "本地化翻译") (eq .Title "Localization Services") }}
- <div class="mb-8">
- <p class="text-sm font-semibold tracking-[0.18em] text-primary-600 uppercase">核心服务</p>
- <h2 class="mt-2 text-2xl font-bold text-gray-900 dark:text-white">核心本地化服务</h2>
- </div>
- <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
- <div class="p-5 bg-white rounded-xl border border-gray-200 shadow-sm transition-shadow hover:shadow-md dark:bg-gray-900/20 dark:border-gray-800">
- <div class="flex items-center gap-3 mb-3">
- <div class="flex justify-center items-center w-10 h-10 text-white bg-primary-500 rounded-lg flex-shrink-0"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418"/></svg></div>
- <div><h3 class="text-base font-bold text-gray-900 dark:text-white">网站本地化</h3><p class="text-xs text-gray-500">官网出海 / 多语言版本</p></div>
- </div>
- <p class="text-sm leading-6 text-gray-600 dark:text-gray-400">企业官网跨语言适配，页面文案翻译、多语言版本构建、本地化表达与阅读体验优化。</p>
- </div>
- <div class="p-5 bg-white rounded-xl border border-gray-200 shadow-sm transition-shadow hover:shadow-md dark:bg-gray-900/20 dark:border-gray-800">
- <div class="flex items-center gap-3 mb-3">
- <div class="flex justify-center items-center w-10 h-10 text-white bg-primary-500 rounded-lg flex-shrink-0"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg></div>
- <div><h3 class="text-base font-bold text-gray-900 dark:text-white">音视频本地化</h3><p class="text-xs text-gray-500">字幕 / 配音 / 后期制作</p></div>
- </div>
- <p class="text-sm leading-6 text-gray-600 dark:text-gray-400">宣传视频、培训课程、产品演示的多语言本地化，字幕翻译、配音录制、时间轴校对。</p>
- </div>
- <div class="p-5 bg-white rounded-xl border border-gray-200 shadow-sm transition-shadow hover:shadow-md dark:bg-gray-900/20 dark:border-gray-800">
- <div class="flex items-center gap-3 mb-3">
- <div class="flex justify-center items-center w-10 h-10 text-white bg-primary-500 rounded-lg flex-shrink-0"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3"/></svg></div>
- <div><h3 class="text-base font-bold text-gray-900 dark:text-white">APP/软件本地化</h3><p class="text-xs text-gray-500">iOS / Android / 桌面</p></div>
- </div>
- <p class="text-sm leading-6 text-gray-600 dark:text-gray-400">移动应用与桌面软件的界面+功能多语言适配，注重字符串长度、日期格式等本地细节。</p>
- </div>
- <div class="p-5 bg-white rounded-xl border border-gray-200 shadow-sm transition-shadow hover:shadow-md dark:bg-gray-900/20 dark:border-gray-800">
- <div class="flex items-center gap-3 mb-3">
- <div class="flex justify-center items-center w-10 h-10 text-white bg-primary-500 rounded-lg flex-shrink-0"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M14.25 6.087c0-.355.186-.676.401-.959.221-.29.349-.634.349-1.003 0-1.036-1.007-1.875-2.25-1.875s-2.25.84-2.25 1.875c0 .369.128.713.349 1.003.215.283.401.604.401.959v0a.64.64 0 01-.657.643 48.39 48.39 0 01-4.163-.3c.186 1.613.293 3.25.315 4.907a.656.656 0 01-.658.663v0c-.355 0-.676-.186-.959-.401a1.647 1.647 0 00-1.003-.349c-1.036 0-1.875 1.007-1.875 2.25s.84 2.25 1.875 2.25c.369 0 .713-.128 1.003-.349.283-.215.604-.401.959-.401v0c.31 0 .555.26.532.57a48.039 48.039 0 01-.642 5.056c1.518.19 3.058.309 4.616.354a.64.64 0 00.657-.643v0c0-.355-.186-.676-.401-.959a1.647 1.647 0 01-.349-1.003c0-1.035 1.008-1.875 2.25-1.875 1.243 0 2.25.84 2.25 1.875 0 .369-.128.713-.349 1.003-.215.283-.401.604-.401.959v0c0 .333.277.599.61.58a48.1 48.1 0 005.427-.63 48.05 48.05 0 00.582-4.717.532.532 0 00-.533-.57v0c-.355 0-.676.186-.959.401-.29.221-.634.349-1.003.349-1.035 0-1.875-1.007-1.875-2.25s.84-2.25 1.875-2.25c.37 0 .713.128 1.003.349.283.215.604.401.959.401v0a.656.656 0 00.658-.663 48.422 48.422 0 00-.37-5.36c-1.886.342-3.81.574-5.766.689a.578.578 0 01-.61-.58v0z"/></svg></div>
- <div><h3 class="text-base font-bold text-gray-900 dark:text-white">游戏本地化</h3><p class="text-xs text-gray-500">手游 / 端游 / 文化适配</p></div>
- </div>
- <p class="text-sm leading-6 text-gray-600 dark:text-gray-400">游戏文本、UI、配音的本地化与文化适配，兼顾语言风格、角色语气与地区合规。</p>
- </div>
- <div class="p-5 bg-white rounded-xl border border-gray-200 shadow-sm transition-shadow hover:shadow-md dark:bg-gray-900/20 dark:border-gray-800">
- <div class="flex items-center gap-3 mb-3">
- <div class="flex justify-center items-center w-10 h-10 text-white bg-primary-500 rounded-lg flex-shrink-0"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m5.063 8.25a2.25 2.25 0 012.247 2.23c0 1.244-1.008 2.252-2.25 2.252-1.244 0-2.25-1.008-2.25-2.252 0-1.232.984-2.232 2.21-2.246M8.25 18.75h7.5M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z"/></svg></div>
- <div><h3 class="text-base font-bold text-gray-900 dark:text-white">多语言SEO</h3><p class="text-xs text-gray-500">关键词 / 内容策略</p></div>
- </div>
- <p class="text-sm leading-6 text-gray-600 dark:text-gray-400">多语种关键词研究、内容策略、海外搜索引擎优化，让网站被目标市场搜到。</p>
- </div>
- <div class="p-5 bg-white rounded-xl border border-gray-200 shadow-sm transition-shadow hover:shadow-md dark:bg-gray-900/20 dark:border-gray-800">
- <div class="flex items-center gap-3 mb-3">
- <div class="flex justify-center items-center w-10 h-10 text-white bg-primary-500 rounded-lg flex-shrink-0"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a2.25 2.25 0 00-2.25-2.25H15a3 3 0 11-6 0H5.25A2.25 2.25 0 003 12m18 0v6a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 18v-6m18 0V9M3 12V9m18 0a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 9m18 0V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v3"/></svg></div>
- <div><h3 class="text-base font-bold text-gray-900 dark:text-white">品牌本地化</h3><p class="text-xs text-gray-500">品牌名 / 视觉 / 文化</p></div>
- </div>
- <p class="text-sm leading-6 text-gray-600 dark:text-gray-400">品牌名称、slogan、视觉元素的文化适配与本地化表达，帮助品牌顺利进入海外市场。</p>
- </div>
- <div class="p-5 bg-white rounded-xl border border-gray-200 shadow-sm transition-shadow hover:shadow-md dark:bg-gray-900/20 dark:border-gray-800">
- <div class="flex items-center gap-3 mb-3">
- <div class="flex justify-center items-center w-10 h-10 text-white bg-primary-500 rounded-lg flex-shrink-0"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12H12m-8.25 5.25h16.5"/></svg></div>
- <div><h3 class="text-base font-bold text-gray-900 dark:text-white">社媒本地化</h3><p class="text-xs text-gray-500">LinkedIn / Twitter / IG</p></div>
- </div>
- <p class="text-sm leading-6 text-gray-600 dark:text-gray-400">海外社交媒体账号的文案运营与本地化，贴合不同平台的表达习惯与文化语境。</p>
- </div>
- <div class="p-5 bg-white rounded-xl border border-gray-200 shadow-sm transition-shadow hover:shadow-md dark:bg-gray-900/20 dark:border-gray-800">
- <div class="flex items-center gap-3 mb-3">
- <div class="flex justify-center items-center w-10 h-10 text-white bg-primary-500 rounded-lg flex-shrink-0"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/></svg></div>
- <div><h3 class="text-base font-bold text-gray-900 dark:text-white">电商本地化</h3><p class="text-xs text-gray-500">产品Listing / 客服文案</p></div>
- </div>
- <p class="text-sm leading-6 text-gray-600 dark:text-gray-400">跨境电商产品Listing优化、商品描述本地化与多语言客服内容撰写，提升转化率。</p>
- </div>
- </div>
- {{ end }}
+  {{/* ====== Localization Service ====== */}}
+  {{ if or (eq .Title "本地化翻译") (eq .Title "Localization Services") }}
+  <div class="mb-8">
+    <p class="text-sm font-semibold tracking-[0.18em] text-primary-600 uppercase">{{ if $isEN }}{{ $labelCoreServiceEN }}{{ else }}{{ $labelCoreService }}{{ end }}</p>
+    <h2 class="mt-2 text-2xl font-bold text-gray-900 dark:text-white">{{ if $isEN }}Core Localization Services{{ else }}核心本地化服务{{ end }}</h2>
+  </div>
+  <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+    {{ range $localCards }}
+    <div class="p-5 bg-white rounded-xl border border-gray-200 shadow-sm transition-shadow hover:shadow-md dark:bg-gray-900/20 dark:border-gray-800">
+      <div class="flex items-center gap-3 mb-3">
+        <div class="flex justify-center items-center w-10 h-10 text-white bg-primary-500 rounded-lg flex-shrink-0"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 21l9.25-9.25a2.25 2.25 0 000-3.18l-3.57-3.57a2.25 2.25 0 00-3.18 0L3 15.75V21h5.25zM15.75 6.75L21 12"/></svg></div>
+        <div><h3 class="text-base font-bold text-gray-900 dark:text-white">{{ .title }}</h3><p class="text-xs text-gray-500">{{ .badge }}</p></div>
+      </div>
+      <p class="text-sm leading-6 text-gray-600 dark:text-gray-400">{{ .desc }}</p>
+    </div>
+    {{ end }}
+  </div>
+  {{ end }}
 
- {{/* ====================== 场景展示 ====================== */}}
- {{ $prefix := "" }}{{ $count := 0 }}{{ $title := "" }}{{ $labels := slice }}
- {{ if or (eq .Title "笔译服务") (eq .Title "Translation Services") }}
- {{ $prefix = "translation" }}{{ $count = 6 }}{{ $title = "笔译" }}
- {{ $labels = slice "译员审稿" "标书翻译" "合同翻译" "CAT工具（Trados）翻译" "小语种证明文件翻译" "译员翻译证书展示" }}
- {{ else if or (eq .Title "口译服务") (eq .Title "Interpretation Services") }}
- {{ $prefix = "interpreting" }}{{ $count = 6 }}{{ $title = "口译" }}
- {{ $labels = slice "人工智能峰会同传" "商务谈判翻译" "展会翻译" "远程线上翻译" "会议交传" "博世同传设备租赁" }}
- {{ else if or (eq .Title "本地化翻译") (eq .Title "Localization Services") }}
- {{ $prefix = "localization" }}{{ $count = 3 }}{{ $title = "本地化" }}
- {{ $labels = slice "视频翻译" "游戏本地化翻译" "网站翻译" }}
- {{ end }}
- {{ if $prefix }}
- <div style="margin-top: 5rem;">
- <div class="mb-8 text-center">
- <p class="text-sm font-semibold tracking-[0.18em] text-primary-600 uppercase">场景展示</p>
- <h2 class="mt-3 text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl dark:text-white">{{ $title }}服务实景</h2>
- <p class="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">工作中的真实场景，感受我们的专业交付环境</p>
- </div>
- <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
- {{ range $i := seq $count }}
- {{ $num := printf "%02d" $i }}
- {{ $path := printf "/images/services/%s-%s.webp" $prefix $num }}
- {{ $label := index $labels (sub $i 1) }}
- <div class="group overflow-hidden rounded-xl bg-gray-100 shadow-sm">
- <img src="{{ $path }}" alt="{{ $label }}" class="w-full aspect-[4/3] object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" />
- <div class="p-2.5 text-center border-t border-gray-200 dark:border-gray-700"><p class="text-sm font-medium text-gray-700 dark:text-gray-300">{{ $label }}</p></div>
- </div>
- {{ end }}
- </div>
- </div>
- {{ end }}
+  {{/* ====== Scene Gallery ====== */}}
+  {{ $prefix := "" }}{{ $count := 0 }}{{ $galleryTitle := "" }}{{ $galleryLabels := slice }}
+  {{ if or (eq .Title "笔译服务") (eq .Title "Translation Services") }}
+    {{ $prefix = "translation" }}{{ $count = 6 }}{{ $galleryTitle = "Translation" }}{{ $galleryLabels = $transScenes }}
+  {{ else if or (eq .Title "口译服务") (eq .Title "Interpretation Services") }}
+    {{ $prefix = "interpreting" }}{{ $count = 6 }}{{ $galleryTitle = "Interpretation" }}{{ $galleryLabels = $interpScenes }}
+  {{ else if or (eq .Title "本地化翻译") (eq .Title "Localization Services") }}
+    {{ $prefix = "localization" }}{{ $count = 3 }}{{ $galleryTitle = "Localization" }}{{ $galleryLabels = $localScenes }}
+  {{ end }}
+  {{ if $prefix }}
+  <div style="margin-top: 5rem;">
+    <div class="mb-8 text-center">
+      <p class="text-sm font-semibold tracking-[0.18em] text-primary-600 uppercase">{{ if $isEN }}{{ $labelSceneEN }}{{ else }}{{ $labelScene }}{{ end }}</p>
+      <h2 class="mt-3 text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl dark:text-white">{{ $galleryTitle }}{{ if not $isEN }}服务实景{{ end }}</h2>
+      <p class="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">{{ if $isEN }}{{ $labelSceneDescEN }}{{ else }}{{ $labelSceneDesc }}{{ end }}</p>
+    </div>
+    <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {{ range $i, $label := $galleryLabels }}
+      {{ $num := printf "%02d" (add $i 1) }}
+      {{ $path := printf "/images/services/%s-%s.webp" $prefix $num }}
+      <div class="group overflow-hidden rounded-xl bg-gray-100 shadow-sm">
+        <img src="{{ $path }}" alt="{{ $label }}" class="w-full aspect-[4/3] object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" />
+        <div class="p-2.5 text-center border-t border-gray-200 dark:border-gray-700"><p class="text-sm font-medium text-gray-700 dark:text-gray-300">{{ $label }}</p></div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+  {{ end }}
 
- </div>
+  </div>
 
- <section class="px-4 py-14 mx-auto max-w-6xl sm:px-6 lg:px-8">
- <div class="text-center">
- <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl dark:text-white">需要这项服务？</h2>
- <p class="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">把材料或需求说明发来，我们帮你判断服务方式，并提供报价。</p>
- <div class="mt-8 flex flex-col gap-3 sm:flex-row justify-center">
- <a href="mailto:contact@xf-trans.com" class="inline-flex justify-center items-center px-6 py-3 text-base font-semibold text-white bg-primary-500 rounded-lg transition-colors hover:bg-primary-600">
- 获取报价
- </a>
- <a href="{{ "/" | absLangURL }}" class="inline-flex justify-center items-center px-6 py-3 text-base font-semibold text-primary-700 bg-primary-50 rounded-lg transition-colors hover:bg-primary-100 dark:text-primary-200 dark:bg-primary-500/10 dark:hover:bg-primary-500/15">
- 返回首页
- </a>
- </div>
- </div>
- </section>
+  <section class="px-4 py-14 mx-auto max-w-6xl sm:px-6 lg:px-8">
+    <div class="text-center">
+      <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl dark:text-white">{{ if $isEN }}{{ $labelNeedEN }}{{ else }}{{ $labelNeed }}{{ end }}</h2>
+      <p class="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">{{ if $isEN }}{{ $labelNeedDescEN }}{{ else }}{{ $labelNeedDesc }}{{ end }}</p>
+      <div class="mt-8 flex flex-col gap-3 sm:flex-row justify-center">
+        <a href="mailto:contact@xf-trans.com" class="inline-flex justify-center items-center px-6 py-3 text-base font-semibold text-white bg-primary-500 rounded-lg transition-colors hover:bg-primary-600">
+          {{ if $isEN }}{{ $labelGetQuoteEN }}{{ else }}{{ $labelGetQuote }}{{ end }}
+        </a>
+        <a href="{{ "/" | absLangURL }}" class="inline-flex justify-center items-center px-6 py-3 text-base font-semibold text-primary-700 bg-primary-50 rounded-lg transition-colors hover:bg-primary-100 dark:text-primary-200 dark:bg-primary-500/10 dark:hover:bg-primary-500/15">
+          {{ if $isEN }}{{ $labelHomeEN }}{{ else }}{{ $labelHome }}{{ end }}
+        </a>
+      </div>
+    </div>
+  </section>
 </main>
 {{ end }}
