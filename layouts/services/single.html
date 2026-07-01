@@ -11,7 +11,7 @@
  <div class="px-4 py-16 mx-auto max-w-6xl sm:px-6 lg:px-8">
 
  {{/* ====================== 笔译服务 ====================== */}}
- {{ if eq .Title "笔译服务" }}
+ {{ if or (eq .Title "笔译服务") (eq .Title "Translation Services") }}
  <div class="mb-8">
  <p class="text-sm font-semibold tracking-[0.18em] text-primary-600 uppercase">核心服务</p>
  <h2 class="mt-2 text-2xl font-bold text-gray-900 dark:text-white">核心笔译服务</h2>
@@ -112,7 +112,7 @@
  {{ end }}
 
  {{/* ====================== 口译服务 ====================== */}}
- {{ if eq .Title "口译服务" }}
+ {{ if or (eq .Title "口译服务") (eq .Title "Interpretation Services") }}
  <div class="mb-8">
  <p class="text-sm font-semibold tracking-[0.18em] text-primary-600 uppercase">核心服务</p>
  <h2 class="mt-2 text-2xl font-bold text-gray-900 dark:text-white">核心口译服务</h2>
@@ -199,7 +199,7 @@
  {{ end }}
 
  {{/* ====================== 本地化翻译 ====================== */}}
- {{ if eq .Title "本地化翻译" }}
+ {{ if or (eq .Title "本地化翻译") (eq .Title "Localization Services") }}
  <div class="mb-8">
  <p class="text-sm font-semibold tracking-[0.18em] text-primary-600 uppercase">核心服务</p>
  <h2 class="mt-2 text-2xl font-bold text-gray-900 dark:text-white">核心本地化服务</h2>
@@ -266,13 +266,13 @@
 
  {{/* ====================== 场景展示 ====================== */}}
  {{ $prefix := "" }}{{ $count := 0 }}{{ $title := "" }}{{ $labels := slice }}
- {{ if eq .Title "笔译服务" }}
+ {{ if or (eq .Title "笔译服务") (eq .Title "Translation Services") }}
  {{ $prefix = "translation" }}{{ $count = 6 }}{{ $title = "笔译" }}
  {{ $labels = slice "译员审稿" "标书翻译" "合同翻译" "CAT工具（Trados）翻译" "小语种证明文件翻译" "译员翻译证书展示" }}
- {{ else if eq .Title "口译服务" }}
+ {{ else if or (eq .Title "口译服务") (eq .Title "Interpretation Services") }}
  {{ $prefix = "interpreting" }}{{ $count = 6 }}{{ $title = "口译" }}
  {{ $labels = slice "人工智能峰会同传" "商务谈判翻译" "展会翻译" "远程线上翻译" "会议交传" "博世同传设备租赁" }}
- {{ else if eq .Title "本地化翻译" }}
+ {{ else if or (eq .Title "本地化翻译") (eq .Title "Localization Services") }}
  {{ $prefix = "localization" }}{{ $count = 3 }}{{ $title = "本地化" }}
  {{ $labels = slice "视频翻译" "游戏本地化翻译" "网站翻译" }}
  {{ end }}

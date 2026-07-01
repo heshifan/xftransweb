@@ -1,332 +1,561 @@
 baseURL: 'https://www.xf-trans.com/'
 title: 显福翻译-专业翻译提供商
-languageCode: zh-cn
-DefaultContentLanguage: zh
 enableEmoji: true
 enableGitInfo: false
 enableRobotsTXT: true
 canonifyURLs: false
 pagination:
- pagerSize: 9
+  pagerSize: 9
 enableInlineShortcodes: true
 
+disableKinds:
+  - section
+  - taxonomy
+  - term
+
+defaultContentLanguage: zh
+defaultContentLanguageInSubdir: false
+
+languages:
+  zh:
+    languageCode: zh-cn
+    languageName: 中文
+    weight: 1
+    title: 显福翻译-专业翻译提供商
+    params:
+      author: 显福翻译
+      authorimage: ../assets/images/global/author.webp
+      og_image: /images/logo.webp
+      moto: "让专业内容，准确进入国际语境"
+      description: "显福翻译长期为政府、企业与专业机构提供笔译、口译、本地化与语言支持服务，总共支持项目3000+，服务客户500+，我们拥有专业的翻译与管理团队，致力于帮助官网内容、项目文件与国际沟通表达更准确、更专业。"
+      disable_theme_toggle: true
+      newsletter_signup: false
+      hero:
+        button_primary:
+          text: "查看服务内容"
+          url: "/#service-overview"
+        button_secondary:
+          text: "直接联系我们"
+          url: "/contact/"
+      p8:
+        heading: "重点解读——快捷入口"
+        content:
+          - text: "内容太多？直接按需求进入最相关的入口。"
+        paths:
+          - title: "显福翻译适不适合我"
+            text: "想先判断显福翻译的工作方式、合作逻辑和适合服务的客户类型。"
+            button: "进入关于我们"
+            url: "/about/"
+          - title: "显福翻译能做什么"
+            text: "想快速看笔译、口译、本地化与长期支持分别对应哪些场景。"
+            button: "返回首页中段"
+            url: "/#service-overview"
+          - title: "我有翻译需求"
+            text: "我手上已有材料、会议、接待或项目，想直接开始沟通。"
+            button: "直接联系"
+            url: "https://wj.qq.com/s2/27020606/8eec/"
+          - title: "想先了解合作方式"
+            text: "我更关心显福翻译为什么这样做、怎么判断需求、合作是否稳定。"
+            button: "查看关于我们"
+            url: "/about/"
+      p1:
+        heading: "语言服务，不该只停留在准确翻译"
+        content:
+          - text: "很多跨语言沟通的问题，并不出在单个词句是否翻对，而是出在整体表达是否专业、是否符合行业语境、是否足以让对方快速理解并建立信任。"
+          - text: "显福翻译关注的不只是语言转换本身，更关注一份内容在真实使用场景中的沟通效果，让官网、资料、项目文件和现场沟通都更可用、更可信。"
+          - text: '我们希望客户拿到的不只是"翻完了"的文本，而是能够直接拿去发、拿去讲、拿去谈的专业表达。'
+      p2:
+        heading: "覆盖关键场景的各大语言服务"
+        content:
+          - text: "从对外展示到项目推进，从正式文件到现场沟通，我们围绕客户真实使用场景提供更稳妥的语言支持。"
+          - text: "服务范围包括笔译、口译、本地化与语言支持，既能处理单次交付，也适合长期有官网、资料、接待和国际业务沟通需求的客户。"
+        services:
+          - title: "笔译服务"
+            label: "正式文稿"
+            text: "适用于合同协议、公司介绍、宣传资料、官网内容、招投标材料、项目文件、报告及各类专业文档。"
+            points:
+              - "适合合同、报告、公司介绍、官网文案等正式文本。"
+              - "重点关注术语统一、逻辑清楚和表达分寸。"
+              - "让译文可直接进入提交、发布和业务沟通场景。"
+          - title: "口译服务"
+            label: "现场沟通"
+            text: "适用于商务会谈、客户接待、会议交流、培训沟通、展会洽谈等场景，支持陪同口译、交替传译、同声传译及相关现场支持。"
+            points:
+              - "适合会谈、接待、会议、培训、展会等即时交流场景。"
+              - "接受培训的专业译员提供口译支持，高端译员提供同声传译。"
+              - "提供专业同传支持、设备租赁和现场安排的全套服务支持。"
+          - title: "本地化服务"
+            label: "对外表达"
+            text: "适用于官网、产品页面、品牌资料和海外市场传播内容，兼顾语言转换、阅读习惯与目标市场接受度。"
+            points:
+              - "适合官网、品牌页、产品介绍和海外传播材料。"
+              - "不仅翻文字，也看表达逻辑、阅读节奏和目标市场接受度。"
+              - "让内容更像真实对外表达，而不是直译版本。"
+          - title: "语言支持"
+            label: "长期协作"
+            text: "适用于长期有对外材料需求、希望统一术语并提升表达专业度的客户。"
+            points:
+              - "适合长期有多语言资料和国际沟通需求的团队。"
+              - "可持续梳理术语、统一表达、减少返工。"
+              - "更适合建立稳定合作节奏，而非临时一次性处理。"
+      p3:
+        heading: "比完成翻译更重要的是，让内容真正可用"
+        content:
+          - text: "很多客户真正担心的，不是有没有人能翻，而是翻完之后能不能放心拿去发、拿去讲、拿去谈。显福翻译更看重最终使用效果，而不是只完成字面转换。"
+        cards:
+          - title: "理解专业场景"
+            text: "政府材料、企业介绍、技术资料和商务沟通，并不能用同一种语言处理方式。"
+          - title: "重视交付稳定"
+            text: "关注术语统一、前后表达一致和交付节奏清晰，减少反复修改带来的时间损耗。"
+          - title: "兼顾准确与表达"
+            text: "准确只是基础，高质量的语言服务还要兼顾专业感、可读性和沟通效率。"
+          - title: "适合长期合作"
+            text: "针对长期有官网、资料、接待和项目沟通需求的客户，更容易形成稳定高效的配合。"
+      p4:
+        heading: "如何开始合作？"
+        content:
+          - text: ""
+        sections:
+          - title: "关于我们"
+            text: "看我们的工作方式、适合服务的客户类型，以及长期合作逻辑。"
+            url: "/about/"
+          - title: "联系我们"
+            text: "已经有材料或明确需求时，直接进入沟通。"
+            url: "https://wj.qq.com/s2/27020606/8eec/"
+          - title: "支持方向"
+            text: "查看首页整合笔译、口译、本地化与长期支持的核心说明。"
+            url: "/#service-overview"
+          - title: "获取报价"
+            text: "如果您有清楚的需求，快速联系我们，我们给您发送报价。"
+            url: "https://wj.qq.com/s2/27020606/8eec/"
+        article_link:
+          text: "查看补充文章"
+          url: "/posts/"
+      p5:
+        heading: "先提供试译文件"
+        content:
+          - text: "如果你正在准备官网、公司介绍、宣传资料、项目文件，或者正在安排会议、接待、展会和培训等语言支持需求，可以先把当前材料或需求发来。我们会从内容性质、使用场景和沟通目标出发，帮你判断更适合怎样的语言处理方式。"
+        buttons:
+          - text: "获取报价"
+            url: "mailto:contact@xf-trans.com"
+          - text: "了解合作方式"
+            url: "/about/"
+      p6:
+        heading: "适合这些正在提升国际沟通质量的客户"
+        content:
+          - text: "如果你正在处理对外展示、跨语言协作或国际业务沟通，这些服务会更适合你。"
+        clients:
+          - title: "政府与公共机构"
+            text: "适合对外交流、接待、宣传与正式资料场景。"
+          - title: "制造业与外贸企业"
+            text: "适合官网、产品资料、客户沟通与出海内容场景。"
+          - title: "医疗、科技、工程等专业行业"
+            text: "适合对准确性和行业理解要求较高的内容。"
+          - title: "有展会、会议、接待需求的组织"
+            text: "适合需要口译与现场双语支持的场景。"
+      p7:
+        heading: "描述需求"
+        content:
+          - text: "无论是官网内容、宣传资料、项目文件，还是会议、接待、展会等口译需求，前期判断是否准确，往往决定后续推进是否顺畅。"
+        steps:
+          - title: "说明需求"
+            text: "告诉我们材料类型、使用场景和时间要求。"
+          - title: "判断方案"
+            text: "明确适合笔译、口译、本地化还是组合支持。"
+          - title: "推进交付"
+            text: "按内容性质组织翻译、审校或口译安排。"
+          - title: "完成使用"
+            text: "让材料或现场沟通真正进入可直接使用状态。"
+      faq:
+        heading: "客户常见问题"
+        content:
+          - text: "很多客户第一次接触时，关心的不是术语，而是先判断能不能做、怎么开始、需不需要准备很多东西。"
+        items:
+          - question: "我现在只有一小段内容，能不能先试译？"
+            answer: "可以。很多项目一开始并不是完整材料，而是一段文案、一个页面链接或一份样稿。先发过来，我们判断方向和适合的支持方式。"
+          - question: "官网英文内容已经有了，但读起来不自然，还能处理吗？"
+            answer: "可以。这类情况通常不是重做全部内容，而是先判断哪些页面需要改写、哪些术语需要统一、哪些表达需要更符合对外沟通语境。"
+          - question: "会议、接待、培训这些现场需求也能做吗？"
+            answer: "可以。首页已将口译、同传和相关现场支持单独整理，方便客户快速判断是否适合自身场景。"
+          - question: "你们能提供哪些语种的翻译服务？"
+            answer: "显福翻译有着专业的翻译团队，包括英语、法语、日语、西班牙语、俄语、葡萄牙语等常见语种的笔译与口译，还有波兰语、捷克语、塞尔维亚语、土耳其语、匈牙利语等小众语种的笔译和口译，覆盖语种广泛，服务样式齐全。"
+      contact:
+        channels:
+          - title: "电子邮箱"
+            type: "email"
+            value: "contact@xf-trans.com"
+          - title: "微信"
+            type: "text"
+            value: "Shinefooo"
+            qrcode: "/images/wechat-qr.webp"
+          - title: "微信公众号"
+            type: "qrcode"
+            value: "显福翻译"
+            qrcode: "/images/wechat-official-qr.webp"
+          - title: "小红书"
+            type: "url"
+            value: "显福翻译"
+            url: "https://xhslink.com/m/1UpuomCuR8h"
+    menus:
+      main:
+        - identifier: home
+          name: 首页
+          url: /
+          weight: 10
+        - identifier: services
+          name: 服务
+          pre: dropdown
+          weight: 15
+        - identifier: about
+          name: 关于我们
+          url: /about/
+          weight: 20
+        - identifier: contact
+          name: 联系我们
+          url: /contact/
+          weight: 30
+      services:
+        - identifier: translation
+          name: 笔译
+          url: /services/translation/
+          weight: 10
+        - identifier: interpreting
+          name: 口译
+          url: /services/interpreting/
+          weight: 20
+        - identifier: localization
+          name: 本地化翻译
+          url: /services/localization/
+          weight: 30
+      footer:
+        - identifier: home
+          name: 首页
+          url: /
+          weight: 10
+        - identifier: services-heading
+          name: 服务
+          weight: 15
+        - identifier: about
+          name: 关于我们
+          url: /about/
+          weight: 20
+        - identifier: contact
+          name: 联系我们
+          url: /contact/
+          weight: 30
+
+  en:
+    languageCode: en
+    languageName: English
+    weight: 2
+    title: "XF-Trans — Professional Translation & Language Services"
+    params:
+      author: XF-Trans
+      authorimage: ../assets/images/global/author.webp
+      og_image: /images/logo.webp
+      moto: "Precision in Every Word"
+      description: "XF-Trans provides professional translation, interpretation, localization, and language support services for government agencies, enterprises, and professional institutions — trusted by 500+ clients across 3000+ projects."
+      disable_theme_toggle: true
+      newsletter_signup: false
+      hero:
+        button_primary:
+          text: "View Our Services"
+          url: "/en/#service-overview"
+        button_secondary:
+          text: "Contact Us"
+          url: "/en/contact/"
+      p8:
+        heading: "Quick Access"
+        content:
+          - text: "Too much information? Jump straight to what you need."
+        paths:
+          - title: "Is XF-Trans Right for Me?"
+            text: "Understand how we work, who we serve, and what our long-term collaboration looks like."
+            button: "About Us"
+            url: "/en/about/"
+          - title: "What We Do"
+            text: "See translation, interpretation, localization, and ongoing language support at a glance."
+            button: "Service Overview"
+            url: "/en/#service-overview"
+          - title: "I Have a Project"
+            text: "Already have materials, meetings, or a project? Let's talk."
+            button: "Get Started"
+            url: "/en/contact/"
+          - title: "How We Partner"
+            text: "Our approach, process, and why long-term collaboration works better."
+            button: "Learn More"
+            url: "/en/about/"
+      p1:
+        heading: "Language Services That Go Beyond Accuracy"
+        content:
+          - text: "Most cross-language challenges aren't about whether individual words are correct — they're about whether the overall expression is professional, context-appropriate, and trustworthy to the reader."
+          - text: "At XF-Trans, we focus not just on language conversion, but on how content performs in real-world use — making websites, documents, project files, and onsite communications more usable and credible."
+          - text: "We want our clients to receive more than just a 'translated' file — they should get professional content ready to publish, present, and negotiate with."
+      p2:
+        heading: "Services Across Every Key Scenario"
+        content:
+          - text: "From external communications to project execution, from formal documents to onsite meetings — we provide reliable language support tailored to real use cases."
+          - text: "Our services cover translation, interpretation, localization, and language support — handling single assignments and long-term retainers alike."
+        services:
+          - title: "Translation"
+            label: "Formal Documents"
+            text: "Contracts, company profiles, marketing materials, website content, bid documents, project reports, and professional documentation."
+            points:
+              - "Suitable for contracts, reports, company profiles, and website copy."
+              - "Terminology consistency, clear logic, and appropriate tone."
+              - "Deliverables ready for submission, publication, and business communication."
+          - title: "Interpretation"
+            label: "Onsite Communication"
+            text: "Business meetings, client reception, conferences, training sessions, trade shows — supported by escort, consecutive, and simultaneous interpretation."
+            points:
+              - "Ideal for meetings, receptions, conferences, training, and exhibitions."
+              - "Professional interpreters for general needs; senior interpreters for simultaneous interpretation."
+              - "Full equipment rental and onsite coordination for simultaneous interpretation."
+          - title: "Localization"
+            label: "Global Content"
+            text: "Websites, product pages, brand materials, and overseas marketing content — balancing language accuracy with local reading habits and market expectations."
+            points:
+              - "For websites, brand pages, product intros, and overseas communication assets."
+              - "Beyond word-for-word translation — we adapt logic, flow, and cultural resonance."
+              - "Content reads like authentic global communication, not a literal translation."
+          - title: "Language Support"
+            label: "Long-Term Retainers"
+            text: "Ongoing support for clients with regular multilingual needs, consistent terminology, and improving expression quality over time."
+            points:
+              - "For teams with ongoing multilingual materials and international communications."
+              - "Consistent terminology, unified expression, minimized rework."
+              - "Best suited for stable collaboration rather than one-off assignments."
+      p3:
+        heading: "More Than Translation — Content You Can Actually Use"
+        content:
+          - text: "What many clients truly worry about isn't finding someone to translate — it's whether the result will be reliable enough to publish, present, or negotiate with. At XF-Trans, we prioritize real-world usability over literal conversion."
+        cards:
+          - title: "Understand the Context"
+            text: "Government materials, corporate profiles, technical documents, and business communications each require a different approach."
+          - title: "Consistent Delivery"
+            text: "Terminology consistency, unified expression, and clear delivery timelines minimize costly back-and-forth revisions."
+          - title: "Accuracy + Readability"
+            text: "Accuracy is just the foundation. Quality language services must also achieve professionalism, readability, and communication effectiveness."
+          - title: "Built for Collaboration"
+            text: "For clients with ongoing website, documentation, and international communication needs, consistent collaboration yields the best results."
+      p4:
+        heading: "How to Get Started?"
+        content:
+          - text: ""
+        sections:
+          - title: "About Us"
+            text: "Learn how we work, who we serve, and the logic behind long-term collaboration."
+            url: "/en/about/"
+          - title: "Contact Us"
+            text: "If you have materials or a clear need, reach out directly."
+            url: "/en/contact/"
+          - title: "Service Overview"
+            text: "See translation, interpretation, localization, and ongoing support on one page."
+            url: "/en/#service-overview"
+          - title: "Get a Quote"
+            text: "If your requirements are clear, contact us and we'll send you a quote promptly."
+            url: "/en/contact/"
+        article_link:
+          text: "Read Supplementary Articles"
+          url: "/en/posts/"
+      p5:
+        heading: "Send Us a Sample or Brief"
+        content:
+          - text: "If you're preparing website content, company profiles, marketing materials, project documents, or arranging meetings, exhibitions, or training that need language support — send us your current materials or requirements. We'll assess the nature, use case, and communication goals to determine the best approach."
+        buttons:
+          - text: "Get a Quote"
+            url: "mailto:contact@xf-trans.com"
+          - text: "How We Work"
+            url: "/en/about/"
+      p6:
+        heading: "Who We Serve"
+        content:
+          - text: "If you're managing cross-language communications, international collaboration, or global business outreach — our services are designed for you."
+        clients:
+          - title: "Government & Public Institutions"
+            text: "Official communications, reception, publicity, and formal documentation."
+          - title: "Manufacturing & Trading Companies"
+            text: "Websites, product materials, customer communications, and export content."
+          - title: "Healthcare, Tech & Engineering"
+            text: "Content that demands high accuracy and industry-specific understanding."
+          - title: "Organizations with Events & Meetings"
+            text: "Interpretation and bilingual onsite support for exhibitions, conferences, and receptions."
+      p7:
+        heading: "How We Work"
+        content:
+          - text: "Whether it's website content, marketing materials, project documents, or interpretation needs for meetings and events — accurate upfront assessment determines how smoothly things proceed."
+        steps:
+          - title: "Tell Us Your Needs"
+            text: "Describe your material type, usage scenario, and timeline."
+          - title: "We Assess the Approach"
+            text: "We determine whether translation, interpretation, localization, or a combination is most suitable."
+          - title: "Execution & Delivery"
+            text: "We organize translation, review, or interpretation based on content type."
+          - title: "Ready to Use"
+            text: "Your materials or onsite communication are delivered in a fully usable state."
+      faq:
+        heading: "Frequently Asked Questions"
+        content:
+          - text: "When clients first reach out, they often want to know: can you handle this, how do we start, and what do we need to prepare?"
+        items:
+          - question: "I only have a short text — can I request a trial translation?"
+            answer: "Yes. Many projects start with just a piece of copy, a page link, or a sample draft. Send it over, and we'll assess the best approach and support method."
+          - question: "My website already has English content but it doesn't read naturally — can you help?"
+            answer: "Absolutely. Typically this doesn't mean rewriting everything — we identify which pages need revision, which terms need standardization, and which expressions need to better suit English communication context."
+          - question: "Do you handle onsite needs like meetings, receptions, and training?"
+            answer: "Yes. We provide escort interpretation, consecutive interpretation, and simultaneous interpretation with full equipment and onsite support."
+          - question: "What languages do you cover?"
+            answer: "XF-Trans has a professional team covering English, French, Japanese, Spanish, Russian, Portuguese, and other common languages, as well as Polish, Czech, Serbian, Turkish, Hungarian, and other less common languages — for both translation and interpretation."
+      contact:
+        channels:
+          - title: "Email"
+            type: "email"
+            value: "contact@xf-trans.com"
+          - title: "WeChat"
+            type: "text"
+            value: "Shinefooo"
+            qrcode: "/images/wechat-qr.webp"
+          - title: "WeChat Official"
+            type: "qrcode"
+            value: "XF-Trans Official"
+            qrcode: "/images/wechat-official-qr.webp"
+          - title: "Xiaohongshu"
+            type: "url"
+            value: "XF-Trans"
+            url: "https://xhslink.com/m/1UpuomCuR8h"
+    menus:
+      main:
+        - identifier: home
+          name: Home
+          url: /en/
+          weight: 10
+        - identifier: services
+          name: Services
+          pre: dropdown
+          weight: 15
+        - identifier: about
+          name: About Us
+          url: /en/about/
+          weight: 20
+        - identifier: contact
+          name: Contact
+          url: /en/contact/
+          weight: 30
+      services:
+        - identifier: translation
+          name: Translation
+          url: /en/services/translation/
+          weight: 10
+        - identifier: interpreting
+          name: Interpretation
+          url: /en/services/interpreting/
+          weight: 20
+        - identifier: localization
+          name: Localization
+          url: /en/services/localization/
+          weight: 30
+      footer:
+        - identifier: home
+          name: Home
+          url: /en/
+          weight: 10
+        - identifier: services-heading
+          name: Services
+          weight: 15
+        - identifier: about
+          name: About Us
+          url: /en/about/
+          weight: 20
+        - identifier: contact
+          name: Contact
+          url: /en/contact/
+          weight: 30
+
 markup:
- goldmark:
- extensions:
- definitionList: true
- footnote: true
- linkify: true
- linkifyProtocol: https
- strikethrough: true
- table: true
- taskList: true
- typographer:
- apostrophe: '&rsquo;'
- disable: false
- ellipsis: '&hellip;'
- emDash: '&mdash;'
- enDash: '&ndash;'
- leftAngleQuote: '&laquo;'
- leftDoubleQuote: '&ldquo;'
- leftSingleQuote: '&lsquo;'
- rightAngleQuote: '&raquo;'
- rightDoubleQuote: '&rdquo;'
- rightSingleQuote: '&rsquo;'
- parser:
- attribute:
- block: false
- title: true
- autoHeadingID: true
- autoHeadingIDType: github
- wrapStandAloneImageWithinParagraph: true
- renderer:
- hardWraps: false
- unsafe: true
- xhtml: false
-
-params:
- author: 显福翻译
- authorimage: ../assets/images/global/author.webp
- og_image: /images/logo.webp
- moto: "让专业内容，准确进入国际语境"
- description: "显福翻译长期为政府、企业与专业机构提供笔译、口译、本地化与语言支持服务，总共支持项目3000+，服务客户500+，我们拥有专业的翻译与管理团队，致力于帮助官网内容、项目文件与国际沟通表达更准确、更专业。"
- disable_theme_toggle: true
- newsletter_signup: false
- hero:
-  button_primary:
-   text: "查看服务内容"
-   url: "/#service-overview"
-  button_secondary:
-   text: "直接联系我们"
-   url: "/contact/"
-
- p1:
-  heading: "语言服务，不该只停留在准确翻译"
-  content:
-   - text: "很多跨语言沟通的问题，并不出在单个词句是否翻对，而是出在整体表达是否专业、是否符合行业语境、是否足以让对方快速理解并建立信任。"
-   - text: "显福翻译关注的不只是语言转换本身，更关注一份内容在真实使用场景中的沟通效果，让官网、资料、项目文件和现场沟通都更可用、更可信。"
-   - text: '我们希望客户拿到的不只是"翻完了"的文本，而是能够直接拿去发、拿去讲、拿去谈的专业表达。'
-
- p2:
-  heading: "覆盖关键场景的各大语言服务"
-  content:
-   - text: "从对外展示到项目推进，从正式文件到现场沟通，我们围绕客户真实使用场景提供更稳妥的语言支持。"
-   - text: "服务范围包括笔译、口译、本地化与语言支持，既能处理单次交付，也适合长期有官网、资料、接待和国际业务沟通需求的客户。"
-  services:
-   - title: "笔译服务"
-     label: "正式文稿"
-     text: "适用于合同协议、公司介绍、宣传资料、官网内容、招投标材料、项目文件、报告及各类专业文档。"
-     points:
-      - "适合合同、报告、公司介绍、官网文案等正式文本。"
-      - "重点关注术语统一、逻辑清楚和表达分寸。"
-      - "让译文可直接进入提交、发布和业务沟通场景。"
-   - title: "口译服务"
-     label: "现场沟通"
-     text: "适用于商务会谈、客户接待、会议交流、培训沟通、展会洽谈等场景，支持陪同口译、交替传译、同声传译及相关现场支持。"
-     points:
-      - "适合会谈、接待、会议、培训、展会等即时交流场景。"
-      - "接受培训的专业译员提供口译支持，高端译员提供同声传译。"
-      - "提供专业同传支持、设备租赁和现场安排的全套服务支持。"
-   - title: "本地化服务"
-     label: "对外表达"
-     text: "适用于官网、产品页面、品牌资料和海外市场传播内容，兼顾语言转换、阅读习惯与目标市场接受度。"
-     points:
-      - "适合官网、品牌页、产品介绍和海外传播材料。"
-      - "不仅翻文字，也看表达逻辑、阅读节奏和目标市场接受度。"
-      - "让内容更像真实对外表达，而不是直译版本。"
-   - title: "语言支持"
-     label: "长期协作"
-     text: "适用于长期有对外材料需求、希望统一术语并提升表达专业度的客户。"
-     points:
-      - "适合长期有多语言资料和国际沟通需求的团队。"
-      - "可持续梳理术语、统一表达、减少返工。"
-      - "更适合建立稳定合作节奏，而非临时一次性处理。"
-
- p3:
-  heading: "比完成翻译更重要的是，让内容真正可用"
-  content:
-   - text: "很多客户真正担心的，不是有没有人能翻，而是翻完之后能不能放心拿去发、拿去讲、拿去谈。显福翻译更看重最终使用效果，而不是只完成字面转换。"
-  cards:
-   - title: "理解专业场景"
-     text: "政府材料、企业介绍、技术资料和商务沟通，并不能用同一种语言处理方式。"
-   - title: "重视交付稳定"
-     text: "关注术语统一、前后表达一致和交付节奏清晰，减少反复修改带来的时间损耗。"
-   - title: "兼顾准确与表达"
-     text: "准确只是基础，高质量的语言服务还要兼顾专业感、可读性和沟通效率。"
-   - title: "适合长期合作"
-     text: "针对长期有官网、资料、接待和项目沟通需求的客户，更容易形成稳定高效的配合。"
-
- p4:
-  heading: "如何开始合作？"
-  content:
-   - text: ""
-  sections:
-   - title: "关于我们"
-     text: "看我们的工作方式、适合服务的客户类型，以及长期合作逻辑。"
-     url: "/about/"
-   - title: "联系我们"
-     text: "已经有材料或明确需求时，直接进入沟通。"
-     url: "https://wj.qq.com/s2/27020606/8eec/"
-   - title: "支持方向"
-     text: "查看首页整合笔译、口译、本地化与长期支持的核心说明。"
-     url: "/#service-overview"
-   - title: "获取报价"
-     text: "如果您有清楚的需求，快速联系我们，我们给您发送报价。"
-     url: "https://wj.qq.com/s2/27020606/8eec/"
-  article_link:
-   text: "查看补充文章"
-   url: "/posts/"
-
- p5:
-  heading: "先提供试译文件"
-  content:
-   - text: "如果你正在准备官网、公司介绍、宣传资料、项目文件，或者正在安排会议、接待、展会和培训等语言支持需求，可以先把当前材料或需求发来。我们会从内容性质、使用场景和沟通目标出发，帮你判断更适合怎样的语言处理方式。"
-  buttons:
-   - text: "获取报价"
-     url: "mailto:contact@xf-trans.com"
-   - text: "了解合作方式"
-     url: "/about/"
-
- p6:
-  heading: "适合这些正在提升国际沟通质量的客户"
-  content:
-   - text: "如果你正在处理对外展示、跨语言协作或国际业务沟通，这些服务会更适合你。"
-  clients:
-   - title: "政府与公共机构"
-     text: "适合对外交流、接待、宣传与正式资料场景。"
-   - title: "制造业与外贸企业"
-     text: "适合官网、产品资料、客户沟通与出海内容场景。"
-   - title: "医疗、科技、工程等专业行业"
-     text: "适合对准确性和行业理解要求较高的内容。"
-   - title: "有展会、会议、接待需求的组织"
-     text: "适合需要口译与现场双语支持的场景。"
-
- p8:
-  heading: "重点解读——快捷入口"
-  content:
-   - text: "内容太多？直接按需求进入最相关的入口。"
-  paths:
-   - title: "显福翻译适不适合我"
-     text: "想先判断显福翻译的工作方式、合作逻辑和适合服务的客户类型。"
-     button: "进入关于我们"
-     url: "/about/"
-   - title: "显福翻译能做什么"
-     text: "想快速看笔译、口译、本地化与长期支持分别对应哪些场景。"
-     button: "返回首页中段"
-     url: "/#service-overview"
-   - title: "我有翻译需求"
-     text: "我手上已有材料、会议、接待或项目，想直接开始沟通。"
-     button: "直接联系"
-     url: "https://wj.qq.com/s2/27020606/8eec/"
-   - title: "想先了解合作方式"
-     text: "我更关心显福翻译为什么这样做、怎么判断需求、合作是否稳定。"
-     button: "查看关于我们"
-     url: "/about/"
-
- p7:
-  heading: "描述需求"
-  content:
-   - text: "无论是官网内容、宣传资料、项目文件，还是会议、接待、展会等口译需求，前期判断是否准确，往往决定后续推进是否顺畅。"
-  steps:
-   - title: "说明需求"
-     text: "告诉我们材料类型、使用场景和时间要求。"
-   - title: "判断方案"
-     text: "明确适合笔译、口译、本地化还是组合支持。"
-   - title: "推进交付"
-     text: "按内容性质组织翻译、审校或口译安排。"
-   - title: "完成使用"
-     text: "让材料或现场沟通真正进入可直接使用状态。"
-
- faq:
-  heading: "客户常见问题"
-  content:
-   - text: "很多客户第一次接触时，关心的不是术语，而是先判断能不能做、怎么开始、需不需要准备很多东西。"
-  items:
-   - question: "我现在只有一小段内容，能不能先试译？"
-     answer: "可以。很多项目一开始并不是完整材料，而是一段文案、一个页面链接或一份样稿。先发过来，我们判断方向和适合的支持方式。"
-   - question: "官网英文内容已经有了，但读起来不自然，还能处理吗？"
-     answer: "可以。这类情况通常不是重做全部内容，而是先判断哪些页面需要改写、哪些术语需要统一、哪些表达需要更符合对外沟通语境。"
-   - question: "会议、接待、培训这些现场需求也能做吗？"
-     answer: "可以。首页已将口译W、同传和相关现场支持单独整理，方便客户快速判断是否适合自身场景。"
-   - question: "你们能提供哪些语种的翻译服务？"
-     answer: "显福翻译有着专业的翻译团队，包括英语、法语、日语、西班牙语、俄语、葡萄牙语等常见语种的笔译与口译，还有波兰语、捷克语、塞尔维亚语、土耳其语、匈牙利语等小众语种的笔译和口译，覆盖语种广泛，服务样式齐全。"
-
- contact:
-  channels:
-   - title: "电子邮箱"
-     type: "email"
-     value: "contact@xf-trans.com"
-   - title: "微信"
-     type: "text"
-     value: "Shinefooo"
-     qrcode: "/images/wechat-qr.webp"
-   - title: "微信公众号"
-     type: "qrcode"
-     value: "显福翻译"
-     qrcode: "/images/wechat-official-qr.webp"
-   - title: "小红书"
-     type: "url"
-     value: "显福翻译"
-     url: "https://xhslink.com/m/1UpuomCuR8h"
-
-menu:
- main:
-  - identifier: home
-    name: 首页
-    url: /
-    weight: 10
-  - identifier: services
-    name: 服务
-    pre: dropdown
-    weight: 15
-  - identifier: about
-    name: 关于我们
-    url: /about/
-    weight: 20
-  - identifier: contact
-    name: 联系我们
-    url: /contact/
-    weight: 30
- services:
-  - identifier: translation
-    name: 笔译
-    url: /services/translation/
-    weight: 10
-  - identifier: interpreting
-    name: 口译
-    url: /services/interpreting/
-    weight: 20
-  - identifier: localization
-    name: 本地化翻译
-    url: /services/localization/
-    weight: 30
- footer:
-  - identifier: home
-    name: 首页
-    url: /
-    weight: 10
-  - identifier: services-heading
-    name: 服务
-    weight: 15
-  - identifier: about
-    name: 关于我们
-    url: /about/
-    weight: 20
-  - identifier: contact
-    name: 联系我们
-    url: /contact/
-    weight: 30
+  goldmark:
+    extensions:
+      definitionList: true
+      footnote: true
+      linkify: true
+      linkifyProtocol: https
+      strikethrough: true
+      table: true
+      taskList: true
+      typographer:
+        apostrophe: '&rsquo;'
+        disable: false
+        ellipsis: '&hellip;'
+        emDash: '&mdash;'
+        enDash: '&ndash;'
+        leftAngleQuote: '&laquo;'
+        leftDoubleQuote: '&ldquo;'
+        leftSingleQuote: '&lsquo;'
+        rightAngleQuote: '&raquo;'
+        rightDoubleQuote: '&rdquo;'
+        rightSingleQuote: '&rsquo;'
+    parser:
+      attribute:
+        block: false
+        title: true
+      autoHeadingID: true
+      autoHeadingIDType: github
+      wrapStandAloneImageWithinParagraph: true
+    renderer:
+      hardWraps: false
+      unsafe: true
+      xhtml: false
 
 taxonomies:
- category: 分类
- tag: 标签
+  category: 分类
+  tag: 标签
 
 privacy:
- disqus:
-  disable: false
- googleAnalytics:
-  anonymizeIP: true
-  disable: false
-  respectDoNotTrack: false
-  useSessionStorage: false
- instagram:
-  disable: false
-  simple: false
- twitter:
-  disable: false
-  enableDNT: false
-  simple: false
- vimeo:
-  disable: false
-  enableDNT: false
-  simple: false
- youtube:
-  disable: false
-  privacyEnhanced: true
+  disqus:
+    disable: false
+  googleAnalytics:
+    anonymizeIP: true
+    disable: false
+    respectDoNotTrack: false
+    useSessionStorage: false
+  instagram:
+    disable: false
+    simple: false
+  twitter:
+    disable: false
+    enableDNT: false
+    simple: false
+  vimeo:
+    disable: false
+    enableDNT: false
+    simple: false
+  youtube:
+    disable: false
+    privacyEnhanced: true
 
 module:
- hugoVersion:
-  extended: true
-  min: "0.148.2"
+  hugoVersion:
+    extended: true
+    min: "0.148.2"
 
 caches:
- assets:
-  dir: :cacheDir/assets
-  maxAge: "0s"
- getcsv:
-  dir: :cacheDir/getcsv
-  maxAge: 3600s
- getjson:
-  dir: :cacheDir/getjson
-  maxAge: 3600s
- images:
-  dir: :cacheDir/images
-  maxAge: 8760h
- modules:
-  dir: :cacheDir/modules
-  maxAge: 8760h
+  assets:
+    dir: :cacheDir/assets
+    maxAge: "0s"
+  getcsv:
+    dir: :cacheDir/getcsv
+    maxAge: 3600s
+  getjson:
+    dir: :cacheDir/getjson
+    maxAge: 3600s
+  images:
+    dir: :cacheDir/images
+    maxAge: 8760h
+  modules:
+    dir: :cacheDir/modules
+    maxAge: 8760h
 
 imaging:
- quality: 85
- resampleFilter: lanczos
- anchor: smart
+  quality: 85
+  resampleFilter: lanczos
+  anchor: smart
+
