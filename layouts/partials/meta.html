@@ -1,6 +1,6 @@
 {{ $siteTitle := .Site.Title }}
 {{ if and (not .IsHome) (eq .Language.Lang "en") }}
-  {{ $siteTitle = "XF-Trans — Professional Translation &amp; Language Services" }}
+  {{ $siteTitle = "XF-Trans — Professional Translation & Language Services" }}
 {{ end }}
 <title itemprop="name">{{if .IsHome}}{{ $siteTitle }}{{else}}{{ .Title }} | {{ $siteTitle }}{{end}}</title>
 <meta name="description" content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}" />
