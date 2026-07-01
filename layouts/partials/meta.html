@@ -1,12 +1,16 @@
-<title itemprop="name">{{if .IsHome}}{{ .Site.Title }}{{else}}{{ .Title }} | {{ .Site.Title }}{{end}}</title>
+{{ $siteTitle := .Site.Title }}
+{{ if and (not .IsHome) (eq .Language.Lang "en") }}
+  {{ $siteTitle = "XF-Trans — Professional Translation &amp; Language Services" }}
+{{ end }}
+<title itemprop="name">{{if .IsHome}}{{ $siteTitle }}{{else}}{{ .Title }} | {{ $siteTitle }}{{end}}</title>
 <meta name="description" content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}" />
-<meta property="og:title" content="{{ .Title }} | {{ .Site.Title }}" />
-<meta name="twitter:title" content="{{ .Title }} | {{ .Site.Title }}" />
-<meta itemprop="name" content="{{ .Title }} | {{ .Site.Title }}" />
-<meta name="application-name" content="{{ .Title }} | {{ .Site.Title }}" />
+<meta property="og:title" content="{{ .Title }} | {{ $siteTitle }}" />
+<meta name="twitter:title" content="{{ .Title }} | {{ $siteTitle }}" />
+<meta itemprop="name" content="{{ .Title }} | {{ $siteTitle }}" />
+<meta name="application-name" content="{{ .Title }} | {{ $siteTitle }}" />
 <meta property="og:description"
       content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}" />
-<meta property="og:site_name" content="{{ .Site.Title }}" />
+<meta property="og:site_name" content="{{ $siteTitle }}" />
 <meta property="og:url" content="{{ .Permalink }}" />
 <meta property="og:locale" content="{{ if eq .Language.Lang "en" }}en_US{{ else }}zh_CN{{ end }}">
 <meta property="og:image" content="{{ .Site.Params.og_image | absURL }}" />
