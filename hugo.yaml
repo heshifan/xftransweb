@@ -236,6 +236,21 @@ languages:
         - identifier: services-heading
           name: 服务
           weight: 15
+        - identifier: translation-footer
+          name: 笔译
+          url: /services/translation/
+          parent: services-heading
+          weight: 16
+        - identifier: interpreting-footer
+          name: 口译
+          url: /services/interpreting/
+          parent: services-heading
+          weight: 17
+        - identifier: localization-footer
+          name: 本地化翻译
+          url: /services/localization/
+          parent: services-heading
+          weight: 18
         - identifier: about
           name: 关于我们
           url: /about/
@@ -464,6 +479,21 @@ languages:
         - identifier: services-heading
           name: Services
           weight: 15
+        - identifier: translation-footer
+          name: Translation
+          url: /en/services/translation/
+          parent: services-heading
+          weight: 16
+        - identifier: interpreting-footer
+          name: Interpretation
+          url: /en/services/interpreting/
+          parent: services-heading
+          weight: 17
+        - identifier: localization-footer
+          name: Localization
+          url: /en/services/localization/
+          parent: services-heading
+          weight: 18
         - identifier: about
           name: About Us
           url: /en/about/
