@@ -1,12 +1,15 @@
 {{ define "main" }}
+{{ $isEN := eq .Language.Lang "en" }}
 {{ $title := .Title }}
-{{ $label := "以客户为核心" }}
+{{ $label := "以客户为核心" }}{{ $labelEN := "Client-Focused" }}
 {{ $accent := "from-primary-700 via-primary-600 to-slate-900" }}
 {{ $points := slice "更聚焦的客户支持" "更高效的翻译服务" "更严格的译员管理" }}
+{{ $pointsEN := slice "More Focused Client Support" "More Efficient Translation Service" "Stricter Translator Management" }}
 {{ if eq $title "关于我们" }}
-  {{ $label = "打造一流品牌" }}
+  {{ $label = "打造一流品牌" }}{{ $labelEN = "Building a Premier Brand" }}
   {{ $accent = "from-slate-900 via-slate-800 to-primary-800" }}
   {{ $points = slice "长期笔译支持" "专业口译服务" "赢得客户信任" }}
+  {{ $pointsEN = slice "Ongoing Translation Support" "Professional Interpretation" "Earning Client Trust" }}
 {{ end }}
 
 <article>
@@ -24,7 +27,7 @@
       <div class="grid gap-10 items-end lg:grid-cols-[1.05fr_0.95fr]">
         <div class="max-w-3xl">
           <div class="inline-flex px-4 py-1.5 text-sm font-semibold tracking-wide text-primary-100 bg-white/10 rounded-full border border-white/15">
-            {{ $label }}
+            {{ if $isEN }}{{ $labelEN }}{{ else }}{{ $label }}{{ end }}
           </div>
           <h1 class="mt-5 text-4xl font-black tracking-tight text-white sm:text-5xl lg:text-6xl">
             {{ .Title }}
@@ -35,27 +38,35 @@
           </p>
           {{ end }}
           <div class="grid gap-3 mt-8 sm:grid-cols-3">
+            {{ if $isEN }}
+            {{ range $pointsEN }}
+            <div class="p-4 bg-white/8 rounded-2xl border border-white/10">
+              <p class="text-sm font-medium leading-6 text-slate-100">{{ . }}</p>
+            </div>
+            {{ end }}
+            {{ else }}
             {{ range $points }}
             <div class="p-4 bg-white/8 rounded-2xl border border-white/10">
               <p class="text-sm font-medium leading-6 text-slate-100">{{ . }}</p>
             </div>
             {{ end }}
+            {{ end }}
           </div>
         </div>
         <div class="p-6 bg-white/8 rounded-[2rem] border border-white/10 backdrop-blur-sm">
-          <p class="text-sm font-semibold tracking-[0.18em] text-primary-100 uppercase">推荐动作</p>
+          <p class="text-sm font-semibold tracking-[0.18em] text-primary-100 uppercase">{{ if $isEN }}Quick Actions{{ else }}推荐动作{{ end }}</p>
           <div class="grid gap-3 mt-5">
             <a href="{{ "/" | absLangURL }}#service-overview" class="flex justify-between items-center px-4 py-4 text-white rounded-2xl border border-white/10 bg-white/8 transition-colors hover:bg-white/14">
-              <span class="font-semibold">查看支持方向</span>
-              <span class="text-primary-100">首页</span>
+              <span class="font-semibold">{{ if $isEN }}View Services{{ else }}查看支持方向{{ end }}</span>
+              <span class="text-primary-100">{{ if $isEN }}Home{{ else }}首页{{ end }}</span>
             </a>
             <a href="{{ "/about/" | absLangURL }}" class="flex justify-between items-center px-4 py-4 text-white rounded-2xl border border-white/10 bg-white/8 transition-colors hover:bg-white/14">
-              <span class="font-semibold">了解合作方式</span>
-              <span class="text-primary-100">关于</span>
+              <span class="font-semibold">{{ if $isEN }}How We Work{{ else }}了解合作方式{{ end }}</span>
+              <span class="text-primary-100">{{ if $isEN }}About{{ else }}关于{{ end }}</span>
             </a>
             <a href="{{ "/contact/" | absLangURL }}" class="flex justify-between items-center px-4 py-4 text-white rounded-2xl border border-white/10 bg-white/8 transition-colors hover:bg-white/14">
-              <span class="font-semibold">直接发送需求</span>
-              <span class="text-primary-100">联系</span>
+              <span class="font-semibold">{{ if $isEN }}Submit Request{{ else }}直接发送需求{{ end }}</span>
+              <span class="text-primary-100">{{ if $isEN }}Contact{{ else }}联系{{ end }}</span>
             </a>
           </div>
         </div>
@@ -91,7 +102,7 @@
       <aside class="space-y-5 lg:sticky lg:top-24 lg:self-start">
         {{ if .TableOfContents }}
         <div class="p-6 bg-gray-50 rounded-[2rem] border border-gray-200 dark:bg-gray-900/20 dark:border-gray-800">
-          <p class="text-sm font-semibold tracking-[0.18em] text-primary-600 uppercase">页面导航</p>
+          <p class="text-sm font-semibold tracking-[0.18em] text-primary-600 uppercase">{{ if $isEN }}Page Navigation{{ else }}页面导航{{ end }}</p>
           <div class="mt-4 text-sm leading-7 text-gray-700 dark:text-gray-300 [&_ul]:space-y-2 [&_ul]:pl-0 [&_li]:list-none [&_a]:text-inherit hover:[&_a]:text-primary-600">
             {{ .TableOfContents }}
           </div>
@@ -99,17 +110,17 @@
         {{ end }}
 
         <div class="p-6 bg-linear-to-br from-primary-600 via-primary-700 to-slate-900 rounded-[2rem] text-white">
-          <p class="text-sm font-semibold tracking-[0.18em] text-primary-100 uppercase">下一步</p>
-          <h2 class="mt-3 text-2xl font-bold">先把需求发来，我们帮你判断怎么做</h2>
+          <p class="text-sm font-semibold tracking-[0.18em] text-primary-100 uppercase">{{ if $isEN }}Next Step{{ else }}下一步{{ end }}</p>
+          <h2 class="mt-3 text-2xl font-bold">{{ if $isEN }}Send us your requirements — we'll assess the best approach{{ else }}先把需求发来，我们帮你判断怎么做{{ end }}</h2>
           <p class="mt-4 leading-7 text-primary-50/90">
-            如果你已经有材料、页面链接、会议安排或想处理的对外内容，可以直接进入联系页开始沟通。
+            {{ if $isEN }}If you have materials, page links, or meeting arrangements, go to the contact page to start a conversation.{{ else }}如果你已经有材料、页面链接、会议安排或想处理的对外内容，可以直接进入联系页开始沟通。{{ end }}
           </p>
           <div class="flex flex-col gap-3 mt-6">
             <a href="{{ "/contact/" | absLangURL }}" class="inline-flex justify-center items-center px-5 py-3 text-base font-semibold text-primary-700 bg-white rounded-xl transition-colors hover:bg-primary-50">
-              联系我们
+              {{ if $isEN }}Contact Us{{ else }}联系我们{{ end }}
             </a>
             <a href="{{ "/" | absLangURL }}#service-overview" class="inline-flex justify-center items-center px-5 py-3 text-base font-semibold text-white rounded-xl border border-white/20 bg-white/10 transition-colors hover:bg-white/15">
-              返回首页支持方向
+              {{ if $isEN }}Back to Services{{ else }}返回首页支持方向{{ end }}
             </a>
           </div>
         </div>
@@ -120,13 +131,13 @@
 
 <section class="px-4 py-16 mx-auto max-w-6xl sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900/20">
   <div class="text-center mb-12">
-    <p class="text-sm font-semibold tracking-[0.18em] text-primary-600 uppercase">专业团队</p>
-    <h2 class="mt-3 text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl dark:text-white">我们的译员</h2>
-    <p class="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">公司拥有经验丰富的专业译员团队，覆盖英、法、西等多语种</p>
+    <p class="text-sm font-semibold tracking-[0.18em] text-primary-600 uppercase">{{ if $isEN }}Our Team{{ else }}专业团队{{ end }}</p>
+    <h2 class="mt-3 text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl dark:text-white">{{ if $isEN }}Our Translators{{ else }}我们的译员{{ end }}</h2>
+    <p class="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">{{ if $isEN }}An experienced team of professional translators covering English, French, Spanish and more{{ else }}公司拥有经验丰富的专业译员团队，覆盖英、法、西等多语种{{ end }}</p>
   </div>
 
   <div class="mb-8">
-    <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-primary-100 text-primary-700 rounded-full text-sm font-semibold">🇺🇸 英语译员</div>
+    <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-primary-100 text-primary-700 rounded-full text-sm font-semibold">🇺🇸 {{ if $isEN }}English Translators{{ else }}英语译员{{ end }}</div>
   </div>
   <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 mb-16">
     <div class="p-6 bg-white rounded-2xl border border-gray-200 shadow-sm transition-shadow hover:shadow-md dark:bg-gray-900/20 dark:border-gray-800">
@@ -134,57 +145,57 @@
       <img src="/images/team/li-peng.webp" alt="李*鹏" class="w-full h-full object-cover" />
     </div>
       <h3 class="text-lg font-bold text-center text-gray-900 dark:text-white">李*鹏</h3>
-      <p class="text-sm text-center text-primary-600 font-semibold">高级英语译员</p>
+      <p class="text-sm text-center text-primary-600 font-semibold">{{ if $isEN }}Senior English Translator{{ else }}高级英语译员{{ end }}</p>
       <div class="mt-3 flex flex-wrap gap-1.5 justify-center">
-        <span class="px-2 py-0.5 text-xs font-medium bg-primary-50 text-primary-600 rounded-full">法律合同</span>
-        <span class="px-2 py-0.5 text-xs font-medium bg-primary-50 text-primary-600 rounded-full">商业文件</span>
-        <span class="px-2 py-0.5 text-xs font-medium bg-primary-50 text-primary-600 rounded-full">政府材料</span>
+        <span class="px-2 py-0.5 text-xs font-medium bg-primary-50 text-primary-600 rounded-full">{{ if $isEN }}Legal Contracts{{ else }}法律合同{{ end }}</span>
+        <span class="px-2 py-0.5 text-xs font-medium bg-primary-50 text-primary-600 rounded-full">{{ if $isEN }}Business Docs{{ else }}商业文件{{ end }}</span>
+        <span class="px-2 py-0.5 text-xs font-medium bg-primary-50 text-primary-600 rounded-full">{{ if $isEN }}Government{{ else }}政府材料{{ end }}</span>
       </div>
-      <p class="mt-3 text-sm leading-6 text-gray-600 dark:text-gray-400 text-center">10年笔译经验，专注法律合同与商业文件翻译，CATTI一级笔译持证。累计交付300+项目。</p>
+      <p class="mt-3 text-sm leading-6 text-gray-600 dark:text-gray-400 text-center">{{ if $isEN }}10 years of translation experience specializing in legal contracts and business documents. CATTI Level 1 certified. Over 300 projects delivered.{{ else }}10年笔译经验，专注法律合同与商业文件翻译，CATTI一级笔译持证。累计交付300+项目。{{ end }}</p>
     </div>
     <div class="p-6 bg-white rounded-2xl border border-gray-200 shadow-sm transition-shadow hover:shadow-md dark:bg-gray-900/20 dark:border-gray-800">
       <div class="mb-4 mx-auto w-16 h-16 overflow-hidden rounded-full ring-2 ring-primary-200">
       <img src="/images/team/zhang-yan.webp" alt="张*燕" class="w-full h-full object-cover" />
     </div>
       <h3 class="text-lg font-bold text-center text-gray-900 dark:text-white">张*燕</h3>
-      <p class="text-sm text-center text-primary-600 font-semibold">技术英语译员</p>
+      <p class="text-sm text-center text-primary-600 font-semibold">{{ if $isEN }}Technical English Translator{{ else }}技术英语译员{{ end }}</p>
       <div class="mt-3 flex flex-wrap gap-1.5 justify-center">
-        <span class="px-2 py-0.5 text-xs font-medium bg-primary-50 text-primary-600 rounded-full">技术文档</span>
-        <span class="px-2 py-0.5 text-xs font-medium bg-primary-50 text-primary-600 rounded-full">工程翻译</span>
+        <span class="px-2 py-0.5 text-xs font-medium bg-primary-50 text-primary-600 rounded-full">{{ if $isEN }}Tech Docs{{ else }}技术文档{{ end }}</span>
+        <span class="px-2 py-0.5 text-xs font-medium bg-primary-50 text-primary-600 rounded-full">{{ if $isEN }}Engineering{{ else }}工程翻译{{ end }}</span>
         <span class="px-2 py-0.5 text-xs font-medium bg-primary-50 text-primary-600 rounded-full">IT</span>
       </div>
-      <p class="mt-3 text-sm leading-6 text-gray-600 dark:text-gray-400 text-center">8年技术翻译经验，擅长操作手册、技术规范与IT文档。工科背景，熟悉专业术语体系。</p>
+      <p class="mt-3 text-sm leading-6 text-gray-600 dark:text-gray-400 text-center">{{ if $isEN }}8 years of technical translation experience specializing in manuals, specifications, and IT documentation. Engineering background with deep terminology knowledge.{{ else }}8年技术翻译经验，擅长操作手册、技术规范与IT文档。工科背景，熟悉专业术语体系。{{ end }}</p>
     </div>
     <div class="p-6 bg-white rounded-2xl border border-gray-200 shadow-sm transition-shadow hover:shadow-md dark:bg-gray-900/20 dark:border-gray-800">
       <div class="mb-4 mx-auto w-16 h-16 overflow-hidden rounded-full ring-2 ring-primary-200">
       <img src="/images/team/chen-yuan.webp" alt="陈*远" class="w-full h-full object-cover" />
     </div>
       <h3 class="text-lg font-bold text-center text-gray-900 dark:text-white">陈*远</h3>
-      <p class="text-sm text-center text-primary-600 font-semibold">同传译员</p>
+      <p class="text-sm text-center text-primary-600 font-semibold">{{ if $isEN }}Simultaneous Interpreter{{ else }}同传译员{{ end }}</p>
       <div class="mt-3 flex flex-wrap gap-1.5 justify-center">
-        <span class="px-2 py-0.5 text-xs font-medium bg-primary-50 text-primary-600 rounded-full">同声传译</span>
-        <span class="px-2 py-0.5 text-xs font-medium bg-primary-50 text-primary-600 rounded-full">会议交传</span>
-        <span class="px-2 py-0.5 text-xs font-medium bg-primary-50 text-primary-600 rounded-full">商务陪同</span>
+        <span class="px-2 py-0.5 text-xs font-medium bg-primary-50 text-primary-600 rounded-full">{{ if $isEN }}Simultaneous{{ else }}同声传译{{ end }}</span>
+        <span class="px-2 py-0.5 text-xs font-medium bg-primary-50 text-primary-600 rounded-full">{{ if $isEN }}Consecutive{{ else }}会议交传{{ end }}</span>
+        <span class="px-2 py-0.5 text-xs font-medium bg-primary-50 text-primary-600 rounded-full">{{ if $isEN }}Business Escort{{ else }}商务陪同{{ end }}</span>
       </div>
-      <p class="mt-3 text-sm leading-6 text-gray-600 dark:text-gray-400 text-center">6年口译经验，服务过50+场国际会议。纽卡斯尔大学口译硕士，熟悉金融与科技领域。</p>
+      <p class="mt-3 text-sm leading-6 text-gray-600 dark:text-gray-400 text-center">{{ if $isEN }}6 years of interpretation experience with 50+ international conferences. MA in Interpreting from Newcastle University. Expertise in finance and tech sectors.{{ else }}6年口译经验，服务过50+场国际会议。纽卡斯尔大学口译硕士，熟悉金融与科技领域。{{ end }}</p>
     </div>
     <div class="p-6 bg-white rounded-2xl border border-gray-200 shadow-sm transition-shadow hover:shadow-md dark:bg-gray-900/20 dark:border-gray-800">
       <div class="mb-4 mx-auto w-16 h-16 overflow-hidden rounded-full ring-2 ring-primary-200">
       <img src="/images/team/wang-wei.webp" alt="王*薇" class="w-full h-full object-cover" />
     </div>
       <h3 class="text-lg font-bold text-center text-gray-900 dark:text-white">王*薇</h3>
-      <p class="text-sm text-center text-primary-600 font-semibold">本地化译员</p>
+      <p class="text-sm text-center text-primary-600 font-semibold">{{ if $isEN }}Localization Translator{{ else }}本地化译员{{ end }}</p>
       <div class="mt-3 flex flex-wrap gap-1.5 justify-center">
-        <span class="px-2 py-0.5 text-xs font-medium bg-primary-50 text-primary-600 rounded-full">网站本地化</span>
-        <span class="px-2 py-0.5 text-xs font-medium bg-primary-50 text-primary-600 rounded-full">营销文案</span>
-        <span class="px-2 py-0.5 text-xs font-medium bg-primary-50 text-primary-600 rounded-full">创译</span>
+        <span class="px-2 py-0.5 text-xs font-medium bg-primary-50 text-primary-600 rounded-full">{{ if $isEN }}Website L10n{{ else }}网站本地化{{ end }}</span>
+        <span class="px-2 py-0.5 text-xs font-medium bg-primary-50 text-primary-600 rounded-full">{{ if $isEN }}Marketing Copy{{ else }}营销文案{{ end }}</span>
+        <span class="px-2 py-0.5 text-xs font-medium bg-primary-50 text-primary-600 rounded-full">{{ if $isEN }}Transcreation{{ else }}创译{{ end }}</span>
       </div>
-      <p class="mt-3 text-sm leading-6 text-gray-600 dark:text-gray-400 text-center">7年本地化经验，专注品牌出海与网站多语言适配。熟悉Shopify、WordPress等平台。</p>
+      <p class="mt-3 text-sm leading-6 text-gray-600 dark:text-gray-400 text-center">{{ if $isEN }}7 years of localization experience focusing on global brand launch and multi-language website adaptation. Proficient with Shopify, WordPress, and more.{{ else }}7年本地化经验，专注品牌出海与网站多语言适配。熟悉Shopify、WordPress等平台。{{ end }}</p>
     </div>
   </div>
 
   <div class="mb-8">
-    <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-primary-100 text-primary-700 rounded-full text-sm font-semibold">🇫🇷 法语译员</div>
+    <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-primary-100 text-primary-700 rounded-full text-sm font-semibold">🇫🇷 {{ if $isEN }}French Translators{{ else }}法语译员{{ end }}</div>
   </div>
   <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 mb-16">
     <div class="p-6 bg-white rounded-2xl border border-gray-200 shadow-sm transition-shadow hover:shadow-md dark:bg-gray-900/20 dark:border-gray-800">
@@ -192,18 +203,18 @@
       <img src="/images/team/sophie-moreau.webp" alt="Sophie Moreau" class="w-full h-full object-cover" />
     </div>
       <h3 class="text-lg font-bold text-center text-gray-900 dark:text-white">Sophie Moreau</h3>
-      <p class="text-sm text-center text-primary-600 font-semibold">法语母语译员</p>
+      <p class="text-sm text-center text-primary-600 font-semibold">{{ if $isEN }}Native French Translator{{ else }}法语母语译员{{ end }}</p>
       <div class="mt-3 flex flex-wrap gap-1.5 justify-center">
-        <span class="px-2 py-0.5 text-xs font-medium bg-primary-50 text-primary-600 rounded-full">法律法语</span>
-        <span class="px-2 py-0.5 text-xs font-medium bg-primary-50 text-primary-600 rounded-full">商务翻译</span>
-        <span class="px-2 py-0.5 text-xs font-medium bg-primary-50 text-primary-600 rounded-full">中法互译</span>
+        <span class="px-2 py-0.5 text-xs font-medium bg-primary-50 text-primary-600 rounded-full">{{ if $isEN }}Legal French{{ else }}法律法语{{ end }}</span>
+        <span class="px-2 py-0.5 text-xs font-medium bg-primary-50 text-primary-600 rounded-full">{{ if $isEN }}Business{{ else }}商务翻译{{ end }}</span>
+        <span class="px-2 py-0.5 text-xs font-medium bg-primary-50 text-primary-600 rounded-full">{{ if $isEN }}CN-FR{{ else }}中法互译{{ end }}</span>
       </div>
-      <p class="mt-3 text-sm leading-6 text-gray-600 dark:text-gray-400 text-center">法国里昂人，8年法中翻译经验。专注法律文件、商业合同与政府材料的中法互译。居中国6年。</p>
+      <p class="mt-3 text-sm leading-6 text-gray-600 dark:text-gray-400 text-center">{{ if $isEN }}From Lyon, France. 8 years of French-Chinese translation experience specializing in legal documents, commercial contracts, and government materials. Based in China for 6 years.{{ else }}法国里昂人，8年法中翻译经验。专注法律文件、商业合同与政府材料的中法互译。居中国6年。{{ end }}</p>
     </div>
   </div>
 
   <div class="mb-8">
-    <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-primary-100 text-primary-700 rounded-full text-sm font-semibold">🇪🇸 西班牙语译员</div>
+    <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-primary-100 text-primary-700 rounded-full text-sm font-semibold">🇪🇸 {{ if $isEN }}Spanish Translators{{ else }}西班牙语译员{{ end }}</div>
   </div>
   <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 mb-8">
     <div class="p-6 bg-white rounded-2xl border border-gray-200 shadow-sm transition-shadow hover:shadow-md dark:bg-gray-900/20 dark:border-gray-800">
@@ -211,13 +222,13 @@
       <img src="/images/team/carlos-ruiz.webp" alt="Carlos Ruiz" class="w-full h-full object-cover" />
     </div>
       <h3 class="text-lg font-bold text-center text-gray-900 dark:text-white">Carlos Ruiz</h3>
-      <p class="text-sm text-center text-primary-600 font-semibold">西班牙语母语译员</p>
+      <p class="text-sm text-center text-primary-600 font-semibold">{{ if $isEN }}Native Spanish Translator{{ else }}西班牙语母语译员{{ end }}</p>
       <div class="mt-3 flex flex-wrap gap-1.5 justify-center">
-        <span class="px-2 py-0.5 text-xs font-medium bg-primary-50 text-primary-600 rounded-full">商贸翻译</span>
-        <span class="px-2 py-0.5 text-xs font-medium bg-primary-50 text-primary-600 rounded-full">展会口译</span>
-        <span class="px-2 py-0.5 text-xs font-medium bg-primary-50 text-primary-600 rounded-full">拉美市场</span>
+        <span class="px-2 py-0.5 text-xs font-medium bg-primary-50 text-primary-600 rounded-full">{{ if $isEN }}Trade Translation{{ else }}商贸翻译{{ end }}</span>
+        <span class="px-2 py-0.5 text-xs font-medium bg-primary-50 text-primary-600 rounded-full">{{ if $isEN }}Exhibition Interp.{{ else }}展会口译{{ end }}</span>
+        <span class="px-2 py-0.5 text-xs font-medium bg-primary-50 text-primary-600 rounded-full">{{ if $isEN }}Latin America{{ else }}拉美市场{{ end }}</span>
       </div>
-      <p class="mt-3 text-sm leading-6 text-gray-600 dark:text-gray-400 text-center">巴塞罗那人，7年中西翻译经验。深耕拉美贸易与展会口译，熟悉中拉商贸往来与文化差异。</p>
+      <p class="mt-3 text-sm leading-6 text-gray-600 dark:text-gray-400 text-center">{{ if $isEN }}From Barcelona. 7 years of Chinese-Spanish translation experience specializing in Latin American trade and exhibition interpretation. Deep understanding of China-Latin America business relations.{{ else }}巴塞罗那人，7年中西翻译经验。深耕拉美贸易与展会口译，熟悉中拉商贸往来与文化差异。{{ end }}</p>
     </div>
   </div>
 </section>
