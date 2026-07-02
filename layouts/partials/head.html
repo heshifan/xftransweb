@@ -14,11 +14,32 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "显福翻译-专业翻译提供商",
-  "url": "{{ .Site.BaseURL }}",
-  "description": "{{ .Site.Params.description }}",
-  "image": "{{ .Site.Params.og_image | absURL }}"
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "{{ .Site.BaseURL }}#website",
+      "url": "{{ .Site.BaseURL }}",
+      "name": "{{ if eq .Language.Lang "en" }}XF-Trans{{ else }}显福翻译{{ end }}",
+      "alternateName": "{{ if eq .Language.Lang "en" }}XF-Trans — Professional Translation & Language Services{{ else }}显福翻译-专业翻译提供商{{ end }}",
+      "description": "{{ .Site.Params.description }}",
+      "inLanguage": "{{ if eq .Language.Lang "en" }}en{{ else }}zh-CN{{ end }}",
+      "image": "{{ .Site.Params.og_image | absURL }}"
+    },
+    {
+      "@type": "Organization",
+      "@id": "{{ .Site.BaseURL }}#organization",
+      "name": "{{ if eq .Language.Lang "en" }}XF-Trans{{ else }}显福翻译{{ end }}",
+      "url": "{{ .Site.BaseURL }}",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "{{ "/images/logo-search.png" | absURL }}",
+        "width": 256,
+        "height": 256
+      },
+      "image": "{{ .Site.Params.og_image | absURL }}",
+      "description": "{{ .Site.Params.description }}"
+    }
+  ]
 }
 </script>
 
